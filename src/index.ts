@@ -7,6 +7,7 @@ import { router as v1 } from './routes/v1/index';
 import MailService from './services/mailService';
 import HttpError from './utils/httpError';
 import { crateRole } from './controllers/role.controller';
+import bodyParser from 'body-parser';
 
 const router = express();
 
@@ -31,7 +32,7 @@ const StartServer = async () => {
     const mailService = MailService.getInstance();
     if (process.env.NODE_ENV === 'local') {
         await mailService.createLocalConnection();
-    } else if (process.env.NODE_ENV === 'production') {
+    } else if (process.env.NODE_ENV === 'development') {
         await mailService.createConnection();
     }
     Logging.info('SMTP Server Connected');
