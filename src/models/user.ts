@@ -1,12 +1,19 @@
 import mongoose, { Document, Schema } from 'mongoose';
 import { IUser } from '../interfaces';
+import { v4 as uuidv4 } from 'uuid';
+import { GENDER, ROLE } from './type';
 
 //EXPORT INTERFACE WITH MONGOOSE DOCUMENT
-export interface IUserModel extends IUser, Document {}
+export interface IUserModel extends IUser, Document { }
 
 //DEFINE USER SCHEMA
 const UserSchema: Schema = new Schema(
     {
+        uuid: {
+            type: String,
+            default: uuidv4,
+            unique: true,
+        },
         firstName: {
             type: String,
             default: '',
@@ -17,7 +24,8 @@ const UserSchema: Schema = new Schema(
         },
         gender: {
             type: String,
-            default: 'male',
+            enum: Object.values(GENDER),
+            default: null,
         },
         dateOfBirth: {
             type: Date,
@@ -42,16 +50,9 @@ const UserSchema: Schema = new Schema(
             min: 8,
         },
         role: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Role',
-        },
-        isEmailVerified: {
-            type: Boolean,
-            default: false,
-        },
-        isProfileCompleted: {
-            type: Boolean,
-            default: false,
+            type: String,
+            enum: Object.values(ROLE),
+            default: null,
         },
     },
     { timestamps: true }
