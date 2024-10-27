@@ -5,7 +5,6 @@ import { IOtp } from './otpInterface';
 import { Query } from './queryInterface';
 import { RelationInterface } from './relationInterface';
 import { Response } from './responseInterface';
-import { IRole } from './roleInterface';
 import { IUser } from './userInterface';
 
 export {
@@ -16,6 +15,5 @@ export {
     Query,
     RelationInterface,
     Response,
-    IRole,
     IUser,
 };
