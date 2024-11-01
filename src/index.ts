@@ -3,12 +3,19 @@ import http from 'http';
 import mongoose from 'mongoose';
 import config from './config/config';
 import Logging from './library/Logging';
+import router from './routes';
+import bodyParser from 'body-parser';
 
-const router = express();
+const app = express();
+app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Sử dụng router cho người dùng
+app.use('/', router);
 
 mongoose.set('strictQuery', false);
 
-// KẾT NỐI ĐẾN CƠ SỞ DỮ LIỆU MONGOOSE
 mongoose
     .connect(config.mongo.url, { retryWrites: true, w: 'majority' })
     .then(() => {
@@ -21,9 +28,8 @@ mongoose
         Logging.error(error);
     });
 
-// KHỞI ĐỘNG SERVER
 const StartServer = () => {
-    http.createServer(router).listen(config.server.port, () =>
+    http.createServer(app).listen(config.server.port, () =>
         Logging.info(`Server is running on port ${config.server.port}.`)
     );
 };
