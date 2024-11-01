@@ -1,6 +1,6 @@
 import { GENDER, ROLE } from "../models/type";
 export interface IUser {
-    uuid: string;
+    id: string;
     firstName: string;
     lastName: string;
     gender: GENDER;

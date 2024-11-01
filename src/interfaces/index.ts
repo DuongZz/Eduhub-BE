@@ -1,19 +1,22 @@
-import { ApiErrorInterface } from './apiErrorInterface';
+import { ICourse } from './courseInterface';
 import { AuthInterface } from './authInterface';
 import { MailInterface } from './mailInterface';
-import { IOtp } from './otpInterface';
-import { Query } from './queryInterface';
-import { RelationInterface } from './relationInterface';
-import { Response } from './responseInterface';
 import { IUser } from './userInterface';
-
+import { ICategory } from './categoryInterface';
+import { ISubCategory } from './subCatergoryInterface';
+import { ILesson } from './lessonInterface';
+import { IQuiz } from './quizInterface';
+import { IQuizAttempt } from './quizAttemptInterface';
+import { IAnswer } from './answerInterface';
 export {
-    ApiErrorInterface,
     AuthInterface,
     MailInterface,
-    IOtp,
-    Query,
-    RelationInterface,
-    Response,
     IUser,
+    ICourse,
+    ICategory,
+    ISubCategory,
+    ILesson,
+    IQuiz,
+    IQuizAttempt,
+    IAnswer
 };

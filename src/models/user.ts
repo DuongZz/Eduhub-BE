@@ -9,11 +9,6 @@ export interface IUserModel extends IUser, Document { }
 //DEFINE USER SCHEMA
 const UserSchema: Schema = new Schema(
     {
-        uuid: {
-            type: String,
-            default: uuidv4,
-            unique: true,
-        },
         firstName: {
             type: String,
             default: '',
@@ -52,7 +47,7 @@ const UserSchema: Schema = new Schema(
         role: {
             type: String,
             enum: Object.values(ROLE),
-            default: null,
+            default: 'LEARNER',
         },
     },
     { timestamps: true }
@@ -60,3 +55,4 @@ const UserSchema: Schema = new Schema(
 
 //EXPORT
 export default mongoose.model<IUserModel>('User', UserSchema);
+
