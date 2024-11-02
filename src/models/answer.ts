@@ -3,7 +3,7 @@ import mongoose, { Document, Schema } from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
 import { IAnswer } from '../interfaces/answerInterface';
 
-export interface IAnswerModel extends IAnswer, Document { }
+export interface IAnswerModel extends Omit<IAnswer, '_id'>, Document { }
 
 const answerSchema: Schema = new Schema(
   {

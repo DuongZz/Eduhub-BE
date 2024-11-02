@@ -3,7 +3,7 @@ import mongoose, { Document, Schema } from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
 import { LEVEL, PROGRESS, RATING } from './type';
 
-export interface ICourseModel extends ICourse, Document { }
+export interface ICourseModel extends Omit<ICourse, '_id'>, Document { }
 
 const courseSchema: Schema = new Schema(
   {
