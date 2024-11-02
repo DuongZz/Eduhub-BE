@@ -2,7 +2,7 @@ import mongoose, { Document, Schema } from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
 import { IReply } from '../interfaces/replyInterface';
 
-export interface IReplyModel extends IReply, Document { }
+export interface IReplyModel extends Omit<IReply, '_id'>, Document { }
 
 const replySchema: Schema = new Schema(
   {

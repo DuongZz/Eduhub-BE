@@ -1,14 +1,19 @@
+// models/user.ts
 import mongoose, { Document, Schema } from 'mongoose';
 import { IUser } from '../interfaces';
-import { v4 as uuidv4 } from 'uuid';
 import { GENDER, ROLE } from './type';
+import { v4 as uuidv4 } from 'uuid';
 
-//EXPORT INTERFACE WITH MONGOOSE DOCUMENT
-export interface IUserModel extends IUser, Document { }
+// EXPORT INTERFACE WITH MONGOOSE DOCUMENT
+export interface IUserModel extends Omit<IUser, '_id'>, Document { }
 
-//DEFINE USER SCHEMA
+// DEFINE USER SCHEMA
 const UserSchema: Schema = new Schema(
     {
+        _id: {
+            type: String,
+            default: uuidv4
+        },
         firstName: {
             type: String,
             default: '',
@@ -53,6 +58,5 @@ const UserSchema: Schema = new Schema(
     { timestamps: true }
 );
 
-//EXPORT
+// EXPORT
 export default mongoose.model<IUserModel>('User', UserSchema);
-

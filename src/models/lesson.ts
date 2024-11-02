@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { PROGRESS } from './type';
 import { ILesson } from '../interfaces/lessonInterface';
 
-export interface ILessonModel extends ILesson, Document { }
+export interface ILessonModel extends Omit<ILesson, '_id'>, Document { }
 const lessonSchema: Schema = new Schema(
   {
     lessonId: {

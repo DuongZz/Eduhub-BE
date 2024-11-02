@@ -2,7 +2,7 @@ import { IDiscussion } from './../interfaces/discussionInterface';
 import mongoose, { Document, Schema } from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
 
-export interface IDiscussionModel extends IDiscussion, Document { }
+export interface IDiscussionModel extends Omit<IDiscussion, '_id'>, Document { }
 const discussionSchema: Schema = new Schema(
   {
     discussionId: {

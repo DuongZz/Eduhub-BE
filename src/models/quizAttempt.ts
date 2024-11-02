@@ -1,7 +1,7 @@
 import mongoose, { Document, mongo, Schema } from 'mongoose';
 import { IQuizAttempt } from '../interfaces/quizAttemptInterface';
 
-export interface IQuizAttemptModel extends IQuizAttempt, Document { }
+export interface IQuizAttemptModel extends Omit<IQuizAttempt, '_id'>, Document { }
 
 const quizAttemptSchema: Schema = new Schema(
   {

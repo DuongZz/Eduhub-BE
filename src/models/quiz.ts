@@ -2,7 +2,7 @@ import { IQuiz } from './../interfaces/quizInterface';
 import mongoose, { Document, Schema } from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
 
-export interface IQuizModel extends IQuiz, Document { }
+export interface IQuizModel extends Omit<IQuiz, '_id'>, Document { }
 
 const quizSchema: Schema = new Schema(
   {

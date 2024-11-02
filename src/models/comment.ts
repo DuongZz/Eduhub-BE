@@ -1,7 +1,7 @@
 import { IComment } from './../interfaces/commentInterface';
 import mongoose, { Document, Schema } from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
-export interface ICommentModel extends IComment, Document { }
+export interface ICommentModel extends Omit<IComment, '_id'>, Document { }
 
 const commentSchema: Schema = new Schema(
   {

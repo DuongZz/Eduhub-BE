@@ -22,6 +22,7 @@ export const checkJwt = (req: Request, res: Response, next: NextFunction) => {
                     }
                 });
             } else {
+                req.user = user;
                 next();
             }
         });
