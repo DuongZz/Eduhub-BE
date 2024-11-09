@@ -1,9 +1,6 @@
 // models/answerModel.ts
-import mongoose, { Document, Schema } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
-import { IAnswer } from '../interfaces/answerInterface';
-
-export interface IAnswerModel extends Omit<IAnswer, '_id'>, Document { }
 
 const answerSchema: Schema = new Schema(
   {
@@ -23,4 +20,4 @@ const answerSchema: Schema = new Schema(
   },
 );
 
-export default mongoose.model<IAnswerModel>('Answer', answerSchema);
+export default mongoose.model('Answer', answerSchema);

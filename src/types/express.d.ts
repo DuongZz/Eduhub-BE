@@ -2,7 +2,7 @@ import { IUser } from "../interfaces";
 
 declare global {
   namespace Express {
-    interface Request {
+    export interface Request {
       user?: IUser;
     }
   }

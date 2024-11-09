@@ -1,12 +1,15 @@
 import { GENDER, ROLE } from "../models/type";
+import { Schema } from "mongoose";
 
 export interface IUser {
-    _id: string;
-    firstName: string;
-    lastName: string;
+    _id: Schema.Types.ObjectId;
+    fullName: string;
     gender: GENDER;
     dateOfBirth: Date;
-    residence: string;
+    country: string;
+    province: string;
+    province_city: string;
+    phone: string;
     avatar: string;
     email: string;
     password: string;

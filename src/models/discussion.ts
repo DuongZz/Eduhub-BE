@@ -1,15 +1,7 @@
-import { IDiscussion } from './../interfaces/discussionInterface';
-import mongoose, { Document, Schema } from 'mongoose';
-import { v4 as uuidv4 } from 'uuid';
+import mongoose, { Schema } from 'mongoose';
 
-export interface IDiscussionModel extends Omit<IDiscussion, '_id'>, Document { }
 const discussionSchema: Schema = new Schema(
   {
-    discussionId: {
-      type: String,
-      default: uuidv4,
-      unique: true
-    },
     discussionTopic: {
       type: String,
       default: ''
@@ -21,3 +13,5 @@ const discussionSchema: Schema = new Schema(
     }
   },
 )
+
+export default mongoose.model('Discussion', discussionSchema)

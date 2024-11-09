@@ -1,7 +1,5 @@
-import mongoose, { Document, mongo, Schema } from 'mongoose';
-import { IQuizAttempt } from '../interfaces/quizAttemptInterface';
+import mongoose, { Schema } from 'mongoose';
 
-export interface IQuizAttemptModel extends Omit<IQuizAttempt, '_id'>, Document { }
 
 const quizAttemptSchema: Schema = new Schema(
   {
@@ -31,4 +29,4 @@ const quizAttemptSchema: Schema = new Schema(
   { timestamps: true }
 )
 
-export default mongoose.model<IQuizAttempt>('QuizAttempt', quizAttemptSchema)
+export default mongoose.model('QuizAttempt', quizAttemptSchema)
