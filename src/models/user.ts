@@ -31,7 +31,7 @@ const UserSchema: Schema = new Schema(
             type: String,
             default: '',
         },
-        province_city: {
+        city: {
             type: String,
             default: ''
         },
@@ -42,7 +42,7 @@ const UserSchema: Schema = new Schema(
         gender: {
             type: String,
             enum: Object.values(GENDER),
-            default: null,
+            default: "MALE",
         },
         role: {
             type: String,

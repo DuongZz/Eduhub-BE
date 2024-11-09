@@ -27,6 +27,7 @@ export const login = async (req: Request, res: Response) => {
           refreshToken: refreshToken,
         },
       }, {})
+
       res.cookie("refreshToken", refreshToken, {
         path: "/",
         secure: false,
@@ -38,9 +39,8 @@ export const login = async (req: Request, res: Response) => {
         secure: false,
         httpOnly: true,
       });
-      res.status(StatusCodes.OK).json({
-        message: "Login successful",
-      });
+
+      res.status(StatusCodes.OK).json({ message: "Login successful" });
     }
   } catch (err) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err);
