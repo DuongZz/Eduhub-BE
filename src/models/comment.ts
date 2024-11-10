@@ -1,15 +1,7 @@
-import { IComment } from './../interfaces/commentInterface';
-import mongoose, { Document, Schema } from 'mongoose';
-import { v4 as uuidv4 } from 'uuid';
-export interface ICommentModel extends Omit<IComment, '_id'>, Document { }
+import mongoose, { Schema } from 'mongoose';
 
 const commentSchema: Schema = new Schema(
   {
-    commentId: {
-      type: String,
-      default: uuidv4,
-      unique: true,
-    },
     commentContent: {
       type: String,
     },
@@ -42,3 +34,6 @@ const commentSchema: Schema = new Schema(
     }
   }
 )
+
+export default mongoose.model('Comment', commentSchema);
+

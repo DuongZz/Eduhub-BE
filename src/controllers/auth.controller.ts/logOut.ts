@@ -1,17 +1,20 @@
-import { Response, Request } from "express";
+import { Request, Response } from "express";
 import User from "../../models/user";
 import { StatusCodes } from 'http-status-codes';
 
 export const logOut = async (req: Request, res: Response) => {
   try {
     if (req.user) {
-      await User.updateOne({ _id: req.user._id }, {
+      const userId = req.user._id;
+
+      await User.updateOne({ _id: userId }, {
         $set: {
           refreshToken: undefined,
         },
       });
     }
 
+    // Xóa cookie
     res.clearCookie("refreshToken", {
       path: "/",
       sameSite: false,

@@ -11,7 +11,6 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Sử dụng router cho người dùng
 app.use('/', router);
 
 mongoose.set('strictQuery', false);

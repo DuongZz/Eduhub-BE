@@ -1,16 +1,8 @@
-import { IQuiz } from './../interfaces/quizInterface';
-import mongoose, { Document, Schema } from 'mongoose';
-import { v4 as uuidv4 } from 'uuid';
+import mongoose, { Schema } from 'mongoose';
 
-export interface IQuizModel extends Omit<IQuiz, '_id'>, Document { }
 
 const quizSchema: Schema = new Schema(
   {
-    quizId: {
-      type: String,
-      default: uuidv4,
-      unique: true,
-    },
     question: {
       type: String,
       default: ''
@@ -37,4 +29,4 @@ const quizSchema: Schema = new Schema(
   }
 )
 
-export default mongoose.model<IQuiz>('Quiz', quizSchema)
+export default mongoose.model('Quiz', quizSchema)
