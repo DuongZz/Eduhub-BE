@@ -5,17 +5,19 @@ import { StatusCodes } from 'http-status-codes'
 import { generateAccessToken, generateRefreshToken } from "../../utils/generateToken";
 
 export const login = async (req: Request, res: Response) => {
+  console.log(req.body);
+
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email })
 
     if (!user) {
-      res.status(StatusCodes.UNAUTHORIZED).json({ message: 'Email not found' });
+      return res.status(StatusCodes.UNAUTHORIZED).json({ message: 'Email not found' });
     }
 
     const validPassword = await bcrypt.compare(password, user.password);
     if (!validPassword) {
-      res.status(StatusCodes.UNAUTHORIZED).json({ message: 'Wrong password' });
+      return res.status(StatusCodes.UNAUTHORIZED).json({ message: 'Wrong password' });
     }
 
     if (user && validPassword) {

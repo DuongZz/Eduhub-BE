@@ -5,8 +5,15 @@ import config from './config/config';
 import Logging from './library/Logging';
 import router from './routes';
 import bodyParser from 'body-parser';
+import cors from "cors"
 
 const app = express();
+app.use(cors({
+    origin: ['http://localhost:5173', 'http://localhost:3000'],
+    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+    optionsSuccessStatus: 204,
+    credentials: true
+}));
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
