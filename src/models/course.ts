@@ -15,11 +15,13 @@ const courseSchema: Schema = new Schema(
     rating: {
       type: String,
       enum: Object.values(RATING),
-      default: null,
+      required: false,
+      default: RATING.ZERO
     },
     level: {
       type: String,
       enum: Object.values(LEVEL),
+      required: false,
       default: ''
     },
     price: {
@@ -30,17 +32,18 @@ const courseSchema: Schema = new Schema(
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Lesson',
-        required: true,
+        default: []
       }
     ],
     progress: {
       type: String,
-      enum: Object.values(PROGRESS)
+      enum: Object.values(PROGRESS),
+      required: false,
+      default: PROGRESS.INCOMPLETE
     },
     approvedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
-      required: true,
     },
   },
   { timestamps: true }

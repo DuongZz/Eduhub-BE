@@ -8,11 +8,11 @@ const lessonSchema: Schema = new Schema(
     },
     lessonName: {
       type: String,
-      default: '',
+      require: true,
     },
     lessonContent: {
       type: String,
-      default: '',
+      require: true,
     },
   },
   { timestamps: true }

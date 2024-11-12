@@ -6,11 +6,6 @@ export interface ISubCategoryModel extends Omit<ISubCategory, '_id'>, Document {
 
 const subCategorySchema: Schema = new Schema(
   {
-    subCategoryId: {
-      type: String,
-      default: uuidv4,
-      unique: true,
-    },
     subCategoryName: {
       type: String,
       default: ''

@@ -1,5 +1,7 @@
+import { Schema } from "mongoose";
+
 export interface ILesson {
-  lessonId: string
+  id: Schema.Types.ObjectId;
   lessonName: string
   lessonContent: string
 }

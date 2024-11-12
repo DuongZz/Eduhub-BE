@@ -1,9 +1,10 @@
-import { IAnswer } from './answerInterface'
+import { Schema } from "mongoose";
+
 export interface IQuiz {
-  quizId: string
+  id: Schema.Types.ObjectId;
   question: string
   response: string
-  answer: IAnswer[]
+  answer: Schema.Types.ObjectId[]
   maxScore: number
   durationTime: number
 }

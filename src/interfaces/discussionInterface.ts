@@ -1,6 +1,7 @@
-import { IComment } from "./commentInterface"
+import { Schema } from "mongoose";
+
 export interface IDiscussion {
-  discussionId: string
+  id: Schema.Types.ObjectId;
   discussionTopic: string
-  discussionContent: IComment[]
+  discussionContent: Schema.Types.ObjectId[]
 }

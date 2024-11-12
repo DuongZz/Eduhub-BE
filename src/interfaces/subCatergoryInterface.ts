@@ -1,4 +1,6 @@
+import { Schema } from "mongoose";
+
 export interface ISubCategory {
-  subCategoryId: string
+  id: Schema.Types.ObjectId;
   subCategoryName: string
 }

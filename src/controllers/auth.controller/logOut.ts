@@ -5,7 +5,7 @@ import { StatusCodes } from 'http-status-codes';
 export const logOut = async (req: Request, res: Response) => {
   try {
     if (req.user) {
-      const userId = req.user._id;
+      const userId = req.user.id;
 
       await User.updateOne({ _id: userId }, {
         $set: {
