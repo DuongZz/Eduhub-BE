@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { register, login, forgotPass, logOut } from "../../controllers/auth.controller.ts";
+import { register, login, forgotPass, logOut } from "../../controllers/auth.controller/index";
 import { checkJwt } from "../../middlewares/authMiddleware";
 
 const router = Router();

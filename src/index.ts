@@ -5,8 +5,10 @@ import config from './config/config';
 import Logging from './library/Logging';
 import router from './routes';
 import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
 
 const app = express();
+app.use(cookieParser());
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

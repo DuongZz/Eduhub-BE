@@ -11,6 +11,11 @@ const SERVER_PORT = process.env.PORT ? Number(process.env.PORT) : 5000;
 const MONGO_URL_LOCAL = `mongodb+srv://${MONGO_DB_USER}:${MONGO_DB_PASSWORD}@eduhub.2m44j.mongodb.net/?retryWrites=true&w=majority&appName=eduhub`;
 const SECRET_ACCESS_TOKEN = process.env.JWT_ACCESS;
 const SECRET_REFRESH_TOKEN = process.env.JWT_REFRESH;
+const S3_ACCESS_KEY = process.env.S3_ACCESS_KEY;
+const S3_SECRET_KEY = process.env.S3_SECRET_KEY;
+const S3_REGION = process.env.S3_REGION
+const S3_BUCKET = process.env.S3_BUCKET
+
 //CREATE CONFIG OBJECT
 const config = {
     mongo: {
@@ -22,6 +27,12 @@ const config = {
     token: {
         access: SECRET_ACCESS_TOKEN,
         refresh: SECRET_REFRESH_TOKEN
+    },
+    s3: {
+        access_key: S3_ACCESS_KEY,
+        secret_key: S3_SECRET_KEY,
+        region: S3_REGION,
+        bucket: S3_BUCKET
     }
 };
 

@@ -40,6 +40,8 @@ export const login = async (req: Request, res: Response) => {
       });
       res.status(StatusCodes.OK).json({
         message: "Login successful",
+        accessToken: accessToken,
+        refreshToken: refreshToken
       });
     }
   } catch (err) {
