@@ -5,8 +5,6 @@ import { StatusCodes } from 'http-status-codes'
 import { generateAccessToken, generateRefreshToken } from "../../utils/generateToken";
 
 export const login = async (req: Request, res: Response) => {
-  console.log(req.body);
-
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email })
@@ -42,7 +40,20 @@ export const login = async (req: Request, res: Response) => {
         httpOnly: true,
       });
 
-      res.status(StatusCodes.OK).json({ message: "Login successful" });
+      res.status(StatusCodes.OK).json({
+        message: "Login successful",
+        user: {
+          _id: user._id,
+          avatar: user.avatar,
+          fullName: user.fullName,
+          email: user.email,
+          country: user.country,
+          city: user.city,
+          dateOfBirth: user.dateOfBirth,
+          gender: user.gender,
+          role: user.role
+        }
+      });
     }
   } catch (err) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err);

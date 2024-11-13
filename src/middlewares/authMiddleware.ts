@@ -4,6 +4,8 @@ import env from '../config/config';
 import { generateAccessToken } from '../utils/generateToken';
 
 export const checkJwt = (req: Request, res: Response, next: NextFunction) => {
+    console.log(req.cookies);
+
     const accessToken = req.cookies['accessToken'];
     const refreshToken = req.cookies['refreshToken'];
 
