@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { createCourseService } from '../../services/course/createCourseService';
 import { StatusCodes } from 'http-status-codes';
+import { generateSlug } from '../../utils/generateSlug';
 
 export const createCourseController = async (req: Request, res: Response) => {
   try {
@@ -12,6 +13,7 @@ export const createCourseController = async (req: Request, res: Response) => {
       price,
       content = [],
       progress,
+      slug
     } = req.body;
     const approvedBy = req.user.id;
 
@@ -23,7 +25,8 @@ export const createCourseController = async (req: Request, res: Response) => {
       price,
       content,
       progress,
-      approvedBy: approvedBy
+      approvedBy: approvedBy,
+      slug: generateSlug(courseName)
     });
 
     res.status(StatusCodes.CREATED).json({

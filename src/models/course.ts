@@ -45,6 +45,11 @@ const courseSchema: Schema = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
     },
+    slug: {
+      type: String,
+      default: '',
+      unique: true
+    }
   },
   { timestamps: true }
 )

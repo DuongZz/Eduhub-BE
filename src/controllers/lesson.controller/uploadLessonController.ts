@@ -3,12 +3,14 @@ import { uploadLessonService } from '../../services/lesson/uploadLessonService';
 import { StatusCodes } from 'http-status-codes';
 
 export const uploadLessonController = async (req: Request, res: Response) => {
-  if (!req.file) {
-    return res.status(StatusCodes.BAD_REQUEST).json({ message: 'No video file uploaded' });
-  }
+
 
   try {
-    const videoUrl = await uploadLessonService(req.file);
+    const { lessonName, lessonContent, courseId } = req.body;
+    if (!req.file) {
+      return res.status(StatusCodes.BAD_REQUEST).json({ message: 'No video file uploaded' });
+    }
+    const videoUrl = await uploadLessonService(req.file, courseId, lessonName, lessonContent);
     return res.status(StatusCodes.OK).json({
       message: 'Video uploaded successfully',
       videoUrl,
