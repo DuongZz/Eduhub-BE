@@ -11,4 +11,7 @@ export interface ICourse {
   progress: PROGRESS
   approvedBy: Schema.Types.ObjectId;
   slug: string;
+  sold: number;
+  view: number;
+  discount: number;
 }

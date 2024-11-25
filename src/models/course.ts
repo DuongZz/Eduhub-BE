@@ -49,6 +49,18 @@ const courseSchema: Schema = new Schema(
       type: String,
       default: '',
       unique: true
+    },
+    sold: {
+      type: Number,
+      default: 0
+    },
+    view: {
+      type: Number,
+      default: 0
+    },
+    discount: {
+      type: Number,
+      default: 0
     }
   },
   { timestamps: true }

@@ -13,7 +13,10 @@ export const createCourseController = async (req: Request, res: Response) => {
       price,
       content = [],
       progress,
-      slug
+      slug,
+      sold,
+      view,
+      discount
     } = req.body;
     const approvedBy = req.user.id;
 
@@ -26,7 +29,10 @@ export const createCourseController = async (req: Request, res: Response) => {
       content,
       progress,
       approvedBy: approvedBy,
-      slug: generateSlug(courseName)
+      slug: generateSlug(courseName),
+      sold,
+      view,
+      discount
     });
 
     res.status(StatusCodes.CREATED).json({
