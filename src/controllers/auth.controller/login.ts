@@ -10,12 +10,12 @@ export const login = async (req: Request, res: Response) => {
     const user = await User.findOne({ email })
 
     if (!user) {
-      res.status(StatusCodes.UNAUTHORIZED).json({ message: 'Email not found' });
+      return res.status(StatusCodes.UNAUTHORIZED).json({ message: 'Email not found' });
     }
 
     const validPassword = await bcrypt.compare(password, user.password);
     if (!validPassword) {
-      res.status(StatusCodes.UNAUTHORIZED).json({ message: 'Wrong password' });
+      return res.status(StatusCodes.UNAUTHORIZED).json({ message: 'Wrong password' });
     }
 
     if (user && validPassword) {
@@ -27,6 +27,7 @@ export const login = async (req: Request, res: Response) => {
           refreshToken: refreshToken,
         },
       }, {})
+
       res.cookie("refreshToken", refreshToken, {
         path: "/",
         secure: false,
@@ -38,10 +39,20 @@ export const login = async (req: Request, res: Response) => {
         secure: false,
         httpOnly: true,
       });
-      res.status(StatusCodes.OK).json({
+
+      return res.status(StatusCodes.OK).json({
         message: "Login successful",
-        accessToken: accessToken,
-        refreshToken: refreshToken
+        userInfo: {
+          id: user._id,
+          avatar: user.avatar,
+          fullName: user.fullName,
+          email: user.email,
+          phone: user.phone,
+          gender: user.gender,
+          residence: user.residence,
+          dateOfBirth: user.dateOfBirth,
+          role: user.role
+        },
       });
     }
   } catch (err) {
