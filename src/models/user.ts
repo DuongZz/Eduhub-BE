@@ -5,32 +5,11 @@ import { GENDER, ROLE } from './type';
 // DEFINE USER SCHEMA
 const UserSchema: Schema = new Schema(
     {
-        fullName: {
-            type: String,
-            required: true,
-        },
-        gender: {
-            type: String,
-            enum: Object.values(GENDER),
-            default: null,
-        },
-        country: {
+        avatar: {
             type: String,
             default: '',
         },
-        province: {
-            type: String,
-            default: ''
-        },
-        province_city: {
-            type: String,
-            default: ''
-        },
-        dateOfBirth: {
-            type: Date,
-            default: null,
-        },
-        avatar: {
+        fullName: {
             type: String,
             default: '',
         },
@@ -48,6 +27,19 @@ const UserSchema: Schema = new Schema(
             type: String,
             required: true,
             min: 8,
+        },
+        gender: {
+            type: String,
+            enum: Object.values(GENDER),
+            default: 'MALE',
+        },
+        residence: {
+            type: String,
+            default: '',
+        },
+        dateOfBirth: {
+            type: Date,
+            default: null,
         },
         role: {
             type: String,
