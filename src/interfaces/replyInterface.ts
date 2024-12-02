@@ -1,8 +1,10 @@
+import { Schema } from "mongoose";
+
 export interface IReply {
-  commentId: string
-  replyId: string
+  id: Schema.Types.ObjectId;
+  commentId: Schema.Types.ObjectId;
   replyContent: string
-  userId: string
+  userId: Schema.Types.ObjectId;
   reply_date: Date
   number_of_like: number
   number_of_dislike: number

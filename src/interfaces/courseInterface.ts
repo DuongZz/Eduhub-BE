@@ -1,12 +1,17 @@
-import { RATING, LEVEL } from "../models/type";
-import { IUser } from "./userInterface";
+import { Schema } from "mongoose";
+import { RATING, LEVEL, PROGRESS } from "../models/type";
 export interface ICourse {
-  courseId: string
+  id?: Schema.Types.ObjectId;
   courseName: string
   description: string
   rating: RATING
   level: LEVEL
   price: number
-  dateCreated: Date
-  approvedBy: IUser
+  content: Schema.Types.ObjectId[];
+  progress: PROGRESS
+  approvedBy: Schema.Types.ObjectId;
+  slug: string;
+  sold: number;
+  view: number;
+  discount: number;
 }

@@ -1,5 +1,7 @@
+import { Schema } from "mongoose";
+
 export interface IAnswer {
-  answerId: string;
+  id: Schema.Types.ObjectId;
   answerText: string;
   isCorrect: boolean;
 }
