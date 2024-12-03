@@ -4,8 +4,11 @@ import { getCourseBySubCategoryService } from '../../services/course/getACourseB
 export const getCoursesBySubCategoryController = async (req: Request, res: Response) => {
   try {
     const { slug } = req.params;
+    const { page } = req.query;
 
-    const courses = await getCourseBySubCategoryService(slug);
+    const pageNum = page ? Number(page) : 1;
+
+    const courses = await getCourseBySubCategoryService(slug as string, pageNum);
 
     if (courses.length === 0) {
       return res.status(StatusCodes.NOT_FOUND).json({

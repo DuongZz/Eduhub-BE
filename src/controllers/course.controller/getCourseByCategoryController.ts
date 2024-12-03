@@ -5,9 +5,11 @@ import { getCourseByCategoryService } from '../../services/course/getCourseByCat
 export const getACourseByCategoryController = async (req: Request, res: Response) => {
   try {
     const { slug } = req.params;
-    console.log("🚀 ~ getACourseByCategoryController ~ slug:", slug)
+    const { page } = req.query;
+    const pageNum = page ? Number(page) : 1;
 
-    const courses = await getCourseByCategoryService(slug);
+
+    const courses = await getCourseByCategoryService(slug, pageNum);
 
     if (!courses || courses.length === 0) {
       return res.status(StatusCodes.NOT_FOUND).json({ message: 'No courses found for this category' });
