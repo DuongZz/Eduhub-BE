@@ -1,8 +1,8 @@
 
 import { Router } from "express";
-// import { changePassword } from "../../controllers/user.controller.ts";
-// import { checkJwt } from "../../middlewares/authMiddleware.js";
+import { checkJwt } from "../../middlewares/authMiddleware";
+import { applyInstructorController } from "../../controllers/user.controller/applyInstructorController";
 const router = Router();
 
-// router.post('/change-password', changePassword)
+router.post('/apply', checkJwt, applyInstructorController)
 export default router;

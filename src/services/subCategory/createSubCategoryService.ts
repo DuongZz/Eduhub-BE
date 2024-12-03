@@ -1,6 +1,6 @@
 import SubCategory from "../../models/subCategory";
 import Category from "../../models/category";
-import { ISubCategory } from "../../interfaces";
+import { ISubCategory } from "../../interfaces/subCatergoryInterface";
 
 export const createSubCategoryService = async (subCategoryData: ISubCategory) => {
   try {
@@ -17,7 +17,7 @@ export const createSubCategoryService = async (subCategoryData: ISubCategory) =>
 
     const savedSubCategory = await newSubCategory.save();
 
-    category.subCategories.push(savedSubCategory._id);
+    category.subCategories.push(savedSubCategory.slug);
     await category.save();
 
     return savedSubCategory;

@@ -1,4 +1,4 @@
-import { ICategory } from "../../interfaces";
+import { ICategory } from "../../interfaces/categoryInterface";
 import Category from "../../models/category";
 
 export const createCategoryService = async (categoryData: ICategory) => {

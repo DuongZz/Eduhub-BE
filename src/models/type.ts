@@ -18,12 +18,13 @@ export enum RATING {
   FIVE = '5',
 }
 
-export enum LEVEL {
-  BASIC = 'BASIC',
-  ADVANCED = 'ADVANCED',
-}
-
 export enum PROGRESS {
   INCOMPLETE = 'INCOMPLETE',
   COMPLETE = 'COMPLETE',
+}
+
+export enum STATUS {
+  PENDING = 'PENDING',
+  APPROVED = 'APPROVED',
+  REJECTED = 'REJECTED'
 }

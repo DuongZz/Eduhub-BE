@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
-import { LEVEL, PROGRESS, RATING } from './type';
+import { PROGRESS, RATING } from './type';
 
 
 const courseSchema: Schema = new Schema(
@@ -18,17 +18,15 @@ const courseSchema: Schema = new Schema(
       required: false,
       default: RATING.ZERO
     },
-    level: {
-      type: String,
-      enum: Object.values(LEVEL),
-      required: false,
-      default: ''
-    },
     price: {
       type: Number,
       default: 0,
     },
-    content: [
+    content: {
+      type: String,
+      required: true
+    },
+    videos: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Lesson',
@@ -62,7 +60,18 @@ const courseSchema: Schema = new Schema(
       type: Number,
       default: 0
     },
-
+    category: {
+      type: String,
+      ref: 'Category',
+      required: true,
+    },
+    subCategories: [
+      {
+        type: String,
+        ref: 'Category',
+        required: true
+      }
+    ]
   },
   { timestamps: true }
 )

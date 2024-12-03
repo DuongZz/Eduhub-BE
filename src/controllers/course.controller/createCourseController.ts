@@ -9,30 +9,36 @@ export const createCourseController = async (req: Request, res: Response) => {
       courseName,
       description,
       rating,
-      level,
       price,
-      content = [],
+      content,
+      videos = [],
       progress,
       slug,
       sold,
       view,
-      discount
+      discount,
+      category,
+      subCategories
     } = req.body;
     const approvedBy = req.user.id;
+    const categorySlug = generateSlug(category);
+    const subCategoriesSlug = subCategories.map((subCategory: string) => generateSlug(subCategory));
 
     const newCourse = await createCourseService({
       courseName,
       description,
       rating,
-      level,
       price,
       content,
+      videos,
       progress,
       approvedBy: approvedBy,
       slug: generateSlug(courseName),
       sold,
       view,
-      discount
+      discount,
+      category: categorySlug,
+      subCategories: subCategoriesSlug
     });
 
     res.status(StatusCodes.CREATED).json({
