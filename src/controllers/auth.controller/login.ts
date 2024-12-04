@@ -40,20 +40,7 @@ export const login = async (req: Request, res: Response) => {
         httpOnly: true,
       });
 
-      return res.status(StatusCodes.OK).json({
-        message: "Login successful",
-        userInfo: {
-          id: user._id,
-          avatar: user.avatar,
-          fullName: user.fullName,
-          email: user.email,
-          phone: user.phone,
-          gender: user.gender,
-          residence: user.residence,
-          dateOfBirth: user.dateOfBirth,
-          role: user.role
-        },
-      });
+      return res.status(StatusCodes.OK).json({ message: "Login successful" });
     }
   } catch (err) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err);

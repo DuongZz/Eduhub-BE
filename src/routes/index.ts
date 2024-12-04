@@ -1,5 +1,15 @@
 import { Router } from 'express';
-import v1 from './v1/index'
-const router = Router()
-router.use('/v1', v1)
+
+import auth from './auth.route'
+import user from './user.route'
+import lesson from './/lesson.route';
+import course from './course.route'
+
+const router = Router();
+
+router.use('/auth', auth)
+router.use('/user', user)
+router.use('/lesson', lesson)
+router.use('/course', course)
+
 export default router;
