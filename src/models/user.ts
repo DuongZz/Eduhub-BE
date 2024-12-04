@@ -33,7 +33,11 @@ const UserSchema: Schema = new Schema(
             enum: Object.values(GENDER),
             default: 'MALE',
         },
-        residence: {
+        country: {
+            type: String,
+            default: '',
+        },
+        city: {
             type: String,
             default: '',
         },

@@ -40,9 +40,7 @@ export const login = async (req: Request, res: Response) => {
         httpOnly: true,
       });
 
-      return res.status(StatusCodes.OK).json({
-        message: "Login successful",
-      });
+      return res.status(StatusCodes.OK).json({ message: "Login successful" });
     }
   } catch (err) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err);

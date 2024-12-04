@@ -1,28 +1,46 @@
 import express from 'express';
 import http from 'http';
 import mongoose from 'mongoose';
-import config from './config/config';
 import Logging from './library/Logging';
-import router from './routes';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
-import cors from "cors"
+import passport from "passport";
+import session from "express-session";
+
+import config from './config/config';
+import corsConfig from './config/corsConfig';
+import PassportGoogle from './config/google';
+import PassportFacebook from './config/facebook';
+
+import router from './routes';
 
 const app = express();
-app.use(cors({
-    origin: ['http://localhost:5173', 'http://localhost:3000'],
-    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
-    optionsSuccessStatus: 204,
-    credentials: true
-}))
+
+app.use(corsConfig)
 app.use(cookieParser());
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/', router);
+app.use(session({
+    secret: "secret",
+    resave: false,
+    saveUninitialized: true,
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+PassportGoogle(app)
+PassportFacebook(app)
+
+app.use('/v1', router);
 
 mongoose.set('strictQuery', false);
+
+app.get("/", (req, res) => {
+    res.send("<a href='/auth/facebook'>Login with facebook</a>");
+});
 
 mongoose
     .connect(config.mongo.url, { retryWrites: true, w: 'majority' })
