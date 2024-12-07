@@ -35,7 +35,8 @@ const ApplicationSchema: Schema = new Schema(
     status: {
       type: String,
       enum: STATUS,
-      default: 'pending',
+      default: 'Pending',
+      required: false,
     },
   },
   { timestamps: true }

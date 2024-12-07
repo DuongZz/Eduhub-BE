@@ -15,6 +15,9 @@ const S3_ACCESS_KEY = process.env.S3_ACCESS_KEY;
 const S3_SECRET_KEY = process.env.S3_SECRET_KEY;
 const S3_REGION = process.env.S3_REGION
 const S3_BUCKET = process.env.S3_BUCKET
+const HOST_MAIL = process.env.HOST_MAIL
+const SENDER_EMAIL = process.env.SENDER_EMAIL
+const PASS_APP = process.env.PASS_APP
 
 //CREATE CONFIG OBJECT
 const config = {
@@ -33,6 +36,11 @@ const config = {
         secret_key: S3_SECRET_KEY,
         region: S3_REGION,
         bucket: S3_BUCKET
+    },
+    email: {
+        host_mail: HOST_MAIL,
+        sender_email: SENDER_EMAIL,
+        pass_app: PASS_APP
     }
 };
 

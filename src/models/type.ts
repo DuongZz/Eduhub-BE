@@ -24,7 +24,7 @@ export enum PROGRESS {
 }
 
 export enum STATUS {
-  PENDING = 'PENDING',
-  APPROVED = 'APPROVED',
-  REJECTED = 'REJECTED'
+  PENDING = 'Pending',
+  APPROVED = 'Approved',
+  REJECTED = 'Rejected'
 }
