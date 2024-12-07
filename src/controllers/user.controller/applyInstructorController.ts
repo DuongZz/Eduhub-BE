@@ -1,20 +1,19 @@
-// controllers/application/applyInstructorController.ts
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { applyInstructorService } from '../../services/user/applyInstructorService';
-import { uploadFileToS3 } from '../../middlewares/uploadCVMiddleware';
+import path from 'path';
 
 export const applyInstructorController = async (req: Request, res: Response) => {
   try {
     const { description, title, linkFb, experience, topic } = req.body;
 
-    const cvUrl = req.file ? await uploadFileToS3(req.file) : null;
-
-    if (!cvUrl) {
+    if (!req.file) {
       return res.status(StatusCodes.BAD_REQUEST).json({
         message: 'CV file is required.',
       });
     }
+
+    const cvUrl = path.join('/uploads/cvs', req.file.filename);
 
     const userId = req.user.id;
 
@@ -24,12 +23,11 @@ export const applyInstructorController = async (req: Request, res: Response) => 
       title,
       linkFb,
       experience,
-      topic
+      topic,
     };
 
     const application = await applyInstructorService(userId, applicationData);
 
-    // Trả về kết quả
     res.status(StatusCodes.CREATED).json({
       message: 'Application submitted successfully.',
       data: application,
