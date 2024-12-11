@@ -4,11 +4,10 @@ import { getCourseByCategoryService } from '../../services/course/getCourseByCat
 
 export const getACourseByCategoryController = async (req: Request, res: Response) => {
   try {
-    const { slug } = req.params; // slug là tên category
+    const { slug } = req.params;
     const { page } = req.query;
     const pageNum = page ? Number(page) : 1;
 
-    // Gọi service để lấy courses và suggestedCourses
     const { courses, suggestedCourses } = await getCourseByCategoryService(slug, pageNum);
 
     if (!courses || courses.length === 0) {
