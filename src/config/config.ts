@@ -18,6 +18,12 @@ const S3_BUCKET = process.env.S3_BUCKET
 const HOST_MAIL = process.env.HOST_MAIL
 const SENDER_EMAIL = process.env.SENDER_EMAIL
 const PASS_APP = process.env.PASS_APP
+// MOMO
+const MOMO_ACCESS_KEY = process.env.MOMO_ACCESS_KEY;
+const MOMO_SECRET_KEY = process.env.MOMO_SECRET_KEY;
+const REDIRECT_URL_MOMO = process.env.REDIRECT_URL_MOMO;
+const IPN_URL_MOMO = process.env.IPN_URL_MOMO;
+const ENDPOINT_MOMO = process.env.ENDPOINT_MOMO;
 
 //CREATE CONFIG OBJECT
 const config = {
@@ -41,6 +47,20 @@ const config = {
         host_mail: HOST_MAIL,
         sender_email: SENDER_EMAIL,
         pass_app: PASS_APP
+    },
+    momo: {
+        accessKey: MOMO_ACCESS_KEY,
+        secretKey: MOMO_SECRET_KEY,
+        orderInfo: "PayWithMOMO",
+        partnerCode: "Eduhub",
+        redirectUrl: REDIRECT_URL_MOMO,
+        ipnUrl: IPN_URL_MOMO,
+        requestType: "payWithMethod",
+        amount: "",
+        extraData: "",
+        autoCapture: true,
+        lang: "vi",
+        endpoints: ENDPOINT_MOMO,
     }
 };
 
