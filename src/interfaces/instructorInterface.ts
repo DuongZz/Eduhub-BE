@@ -8,4 +8,5 @@ export interface IInstructor extends Document {
   linkFb?: string;
   experience?: string;
   topic?: string;
+  students?: number;
 }

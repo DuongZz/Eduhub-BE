@@ -31,6 +31,10 @@ const InstructorSchema: Schema = new Schema(
     topic: {
       type: String,
       default: ''
+    },
+    students: {
+      type: Number,
+      default: 0
     }
   },
   { timestamps: true }
