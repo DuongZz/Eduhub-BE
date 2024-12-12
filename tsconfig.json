@@ -2,7 +2,10 @@
     "compilerOptions": {
         "target": "es6",
         "module": "commonjs",
-        "lib": ["es2016", "dom"],
+        "lib": [
+            "es2016",
+            "dom"
+        ],
         "allowJs": true,
         "checkJs": true,
         "declaration": true,
@@ -14,13 +17,20 @@
         "esModuleInterop": true,
         "pretty": true,
         "experimentalDecorators": true,
-        "typeRoots": ["node_modules/@types"]
+        "typeRoots": [
+            "node_modules/@types"
+        ]
     },
     "include": [
         "src/**/*.ts",
         "src/controllers/auth.controller",
-        "src/controllers/user.controller"
+        "src/controllers/user.controller",
+        "src/controllers/payment.controller/zalopayController.js"
     ],
-    "exclude": ["node_modules"],
-    "files": ["./src/types/express.d.ts"]
+    "exclude": [
+        "node_modules"
+    ],
+    "files": [
+        "./src/types/express.d.ts"
+    ]
 }
