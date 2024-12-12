@@ -1,5 +1,5 @@
 import Course from '../../models/course';
-import User from '../../models/user';
+import Instructor from '../../models/instructor';
 
 export const getAllCourseService = async () => {
   try {
@@ -7,36 +7,44 @@ export const getAllCourseService = async () => {
     const topViewCourse = await Course.find().sort({ view: -1 }).limit(8);
     const topSaleCourse = await Course.find().sort({ discount: -1 }).limit(8);
     const newReleasedCourse = await Course.find().sort({ createdAt: -1 }).limit(8);
-    const topAuthors = await Course.aggregate([
+
+    const topInstructorsByStudents = await Instructor.aggregate([
       {
-        $group: {
-          _id: '$approvedBy',
-          totalView: { $sum: '$view' },
+        $project: {
+          user: 1,
+          students: 1,
+          title: 1
         },
       },
+      { $sort: { students: -1 } },
+      { $limit: 8 },
       {
         $lookup: {
           from: 'users',
-          localField: '_id',
+          localField: 'user',
           foreignField: '_id',
-          as: 'authorDetails',
+          as: 'instructorDetails',
         },
       },
-      { $unwind: '$authorDetails' },
-      { $sort: { totalView: -1 } },
-      { $limit: 4 },
+      { $unwind: '$instructorDetails' },
       {
         $project: {
           _id: 0,
-          authorId: '$_id',
-          name: '$authorDetails.name',
-          totalView: 1,
+          instructorId: '$user',
+          name: '$instructorDetails.fullName',
+          title: 1
         },
       },
     ]);
 
-    return { topSoldCourse, topViewCourse, topSaleCourse, newReleasedCourse, topAuthors };
+    return {
+      topSoldCourse,
+      topViewCourse,
+      topSaleCourse,
+      newReleasedCourse,
+      topInstructorsByStudents,
+    };
   } catch (err) {
-    throw new Error(err)
+    throw new Error(err.message);
   }
-}
+};

@@ -1,16 +1,22 @@
-import { ISubCategory } from './../interfaces/subCatergoryInterface';
-import mongoose, { Document, Schema } from 'mongoose';
-import { v4 as uuidv4 } from 'uuid';
+import mongoose, { Schema, model } from "mongoose";
 
-export interface ISubCategoryModel extends Omit<ISubCategory, '_id'>, Document { }
-
-const subCategorySchema: Schema = new Schema(
+const SubCategorySchema: Schema = new Schema(
   {
     subCategoryName: {
       type: String,
-      default: ''
+      required: true,
+    },
+    parentCategorySlug: {
+      type: String,
+      ref: "Category",
+      required: true,
+    },
+    slug: {
+      type: String,
+      unique: true
     }
-  }
-)
+  },
+  { timestamps: true }
+);
 
-export default mongoose.model<ISubCategory>('subCategory', subCategorySchema)
+export default model("SubCategory", SubCategorySchema);

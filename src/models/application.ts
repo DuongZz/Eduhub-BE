@@ -1,7 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
+import { STATUS } from './type'
 
-// DEFINE INSTRUCTOR SCHEMA
-const InstructorSchema: Schema = new Schema(
+const ApplicationSchema: Schema = new Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
@@ -22,23 +22,24 @@ const InstructorSchema: Schema = new Schema(
     },
     linkFb: {
       type: String,
-      default: ''
+      default: '',
     },
     experience: {
       type: String,
-      default: ''
+      default: '',
     },
     topic: {
       type: String,
-      default: ''
+      default: '',
     },
-    students: {
-      type: Number,
-      default: 0
-    }
+    status: {
+      type: String,
+      enum: STATUS,
+      default: 'Pending',
+      required: false,
+    },
   },
   { timestamps: true }
 );
 
-// EXPORT
-export default mongoose.model('Instructor', InstructorSchema);
+export default mongoose.model('Application', ApplicationSchema);

@@ -1,4 +1,4 @@
-import { GENDER, ROLE } from "../models/type";
+import { GENDER, ROLE } from "../type";
 import { Schema } from "mongoose";
 
 export interface IUser {

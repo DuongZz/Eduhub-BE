@@ -18,7 +18,7 @@ export const checkRoleAdmin = (req: Request, res: Response, next: NextFunction) 
     return res.status(StatusCodes.UNAUTHORIZED).send('User not authenticated');
   }
   if (user.role !== 'ADMIN') {
-    return res.status(StatusCodes.FORBIDDEN).send('Access denied: You are not an instructor');
+    return res.status(StatusCodes.FORBIDDEN).send('Access denied: You are not an admin');
   }
   next();
 };

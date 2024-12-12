@@ -1,6 +1,8 @@
-import { Schema } from "mongoose";
+import { Schema, Types } from "mongoose";
 
 export interface ISubCategory {
-  id: Schema.Types.ObjectId;
-  subCategoryName: string
+  id?: Types.ObjectId;
+  subCategoryName: string;
+  parentCategorySlug: string;
+  slug: string;
 }

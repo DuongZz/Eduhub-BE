@@ -16,6 +16,7 @@
     "dependencies": {
         "@types/jsonwebtoken": "^8.5.8",
         "aws-sdk": "^2.1167.0",
+        "axios": "^1.7.9",
         "bcrypt": "^5.0.1",
         "body-parser": "^1.20.3",
         "chalk": "^4.1.2",

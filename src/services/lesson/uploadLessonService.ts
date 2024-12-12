@@ -1,5 +1,5 @@
 import config from '../../config/config';
-import { s3 } from '../../config/s3bucket';
+import { s3 } from '../../config/s3bucket'
 import Course from '../../models/course';
 import Lesson from '../../models/lesson';
 import { generateSlug } from '../../utils/generateSlug';
@@ -33,7 +33,7 @@ export const uploadLessonService = async (file: Express.Multer.File, courseId: s
     if (!courseId) {
       throw new Error('Course not found');
     }
-    course.content.push(lesson._id)
+    course.videos.push(lesson._id)
     await course.save()
     return videoUrl;
   } catch (err) {
