@@ -6,6 +6,7 @@ import { upload } from "../middlewares/uploadCVMulter";
 import { addCourseToCartController } from "../controllers/user.controller/addCourseToCartController";
 import { getMyCartController } from "../controllers/user.controller/getMyCartController";
 import { getUserInfo } from "../controllers/user.controller";
+import { editProfileController } from "../controllers/user.controller/editProfileController";
 
 const router = Router();
 
@@ -15,5 +16,8 @@ router.post('/add-to-cart', addCourseToCartController);
 
 router.get('/my-cart', getMyCartController);
 router.get("/", getUserInfo)
+router.patch('/edit-profile', editProfileController);
+
+
 
 export default router;
