@@ -2,12 +2,14 @@ import { Request, Response } from 'express';
 import { createCourseService } from '../../services/course/createCourseService';
 import { StatusCodes } from 'http-status-codes';
 import { generateSlug } from '../../utils/generateSlug';
+import Instructor from '../../models/instructor';
 
 export const createCourseController = async (req: Request, res: Response) => {
   try {
     const {
       courseName,
       description,
+      introduce,
       rating,
       price,
       content,
@@ -27,6 +29,7 @@ export const createCourseController = async (req: Request, res: Response) => {
     const newCourse = await createCourseService({
       courseName,
       description,
+      introduce,
       rating,
       price,
       content,
@@ -40,6 +43,7 @@ export const createCourseController = async (req: Request, res: Response) => {
       category: categorySlug,
       subCategories: subCategoriesSlug
     });
+
 
     res.status(StatusCodes.CREATED).json({
       message: 'Course created successfully',

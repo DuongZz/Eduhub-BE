@@ -10,4 +10,5 @@ export interface IInstructor extends Document {
   topic?: string;
   students?: number;
   rating?: number;
+  courseAmount?: number;
 }

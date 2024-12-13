@@ -4,6 +4,7 @@ export interface ICourse {
   id?: Schema.Types.ObjectId;
   courseName: string
   description: string
+  introduce: string;
   rating: RATING
   price: number
   content: string;

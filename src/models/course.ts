@@ -12,6 +12,10 @@ const courseSchema: Schema = new Schema(
       type: String,
       default: '',
     },
+    introduce: {
+      type: String,
+      default: ''
+    },
     rating: {
       type: String,
       enum: Object.values(RATING),
