@@ -71,7 +71,7 @@ const courseSchema: Schema = new Schema(
         ref: 'Category',
         required: true
       }
-    ]
+    ],
   },
   { timestamps: true }
 )

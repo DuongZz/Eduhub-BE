@@ -13,7 +13,8 @@ export const getAllCourseService = async () => {
         $project: {
           user: 1,
           students: 1,
-          title: 1
+          title: 1,
+          rating: 1
         },
       },
       { $sort: { students: -1 } },
@@ -32,7 +33,8 @@ export const getAllCourseService = async () => {
           _id: 0,
           instructorId: '$user',
           name: '$instructorDetails.fullName',
-          title: 1
+          title: 1,
+          rating: 1,
         },
       },
     ]);
