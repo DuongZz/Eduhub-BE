@@ -35,6 +35,10 @@ const InstructorSchema: Schema = new Schema(
     students: {
       type: Number,
       default: 0
+    },
+    rating: {
+      type: Number,
+      default: 0
     }
   },
   { timestamps: true }

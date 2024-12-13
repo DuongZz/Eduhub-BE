@@ -1,4 +1,5 @@
 import { Router } from "express";
+
 import { checkJwt } from "../middlewares/authMiddleware";
 import { checkRoleInstructor } from "../middlewares/checkRole";
 import { createCourseController } from "../controllers/course.controller/createCourseController";
@@ -9,6 +10,7 @@ import { getCourseByOptionsController } from "../controllers/course.controller/g
 import { getACourseByCategoryController } from "../controllers/course.controller/getCourseByCategoryController";
 import { getCoursesBySubCategoryController } from "../controllers/course.controller/getACourseBySubCateController";
 import { searchCourseByNameController } from "../controllers/course.controller/searchCourseByNameController";
+
 const router = Router();
 
 router.get('/search', searchCourseByNameController)

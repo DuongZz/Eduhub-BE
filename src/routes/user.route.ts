@@ -1,17 +1,22 @@
 
 import { Router } from "express";
-
-import { getUserInfo } from "../controllers/user.controller";
-import { applyInstructorController } from "../controllers/user.controller/applyInstructorController";
-
 import { checkJwt } from "../middlewares/authMiddleware";
+import { applyInstructorController } from "../controllers/user.controller/applyInstructorController";
 import { upload } from "../middlewares/uploadCVMulter";
+import { addCourseToCartController } from "../controllers/user.controller/addCourseToCartController";
+import { getMyCartController } from "../controllers/user.controller/getMyCartController";
+import { getUserInfo } from "../controllers/user.controller";
+import { editProfileController } from "../controllers/user.controller/editProfileController";
 
 const router = Router();
 
-router.get("/", checkJwt, getUserInfo)
+router.use(checkJwt)
+router.post('/apply', upload.single('cv'), applyInstructorController);
+router.post('/add-to-cart', addCourseToCartController);
 
-router.post('/apply', checkJwt, upload.single('cv'), applyInstructorController)
+router.get('/my-cart', getMyCartController);
+router.get("/", getUserInfo)
+router.patch('/edit-profile', editProfileController);
 
-// router.post('/change-password', changePassword)
+
 export default router;
