@@ -19,5 +19,4 @@ router.get("/", getUserInfo)
 router.patch('/edit-profile', editProfileController);
 
 
-
 export default router;
