@@ -4,7 +4,7 @@ import Instructor from '../../models/instructor';
 import { IApplication } from '../../interfaces/applicationInterface';
 
 export const applyInstructorService = async (userId: string, data: IApplication) => {
-  const { description, cv, title, linkFb, experience, topic } = data;
+  const { cv, title, linkFb, experience, topic } = data;
 
   const existingInstructor = await Instructor.findOne({ user: userId });
   if (existingInstructor) {
@@ -18,7 +18,6 @@ export const applyInstructorService = async (userId: string, data: IApplication)
 
   const application = await Application.create({
     user: userId,
-    description,
     cv,
     title,
     linkFb,
