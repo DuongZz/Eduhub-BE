@@ -7,11 +7,12 @@ import { addCourseToCartController } from "../controllers/user.controller/addCou
 import { getMyCartController } from "../controllers/user.controller/getMyCartController";
 import { getUserInfo } from "../controllers/user.controller";
 import { editProfileController } from "../controllers/user.controller/editProfileController";
+import { validateInstructorApplication } from "../middlewares/validateInstructorApplication";
 
 const router = Router();
 
 router.use(checkJwt)
-router.post('/apply', upload.single('cv'), applyInstructorController);
+router.post('/apply', validateInstructorApplication, upload.single('cv'), applyInstructorController);
 router.post('/add-to-cart', addCourseToCartController);
 
 router.get('/my-cart', getMyCartController);
