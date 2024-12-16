@@ -43,7 +43,6 @@ const UserSchema: Schema = new Schema(
         },
         dateOfBirth: {
             type: Date,
-            required: true
         },
         role: {
             type: String,
