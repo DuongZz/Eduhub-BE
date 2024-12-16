@@ -2,7 +2,7 @@ import { Router } from "express";
 
 import { checkJwt } from "../middlewares/authMiddleware";
 import { checkRoleInstructor } from "../middlewares/checkRole";
-import { createCourseController } from "../controllers/course.controller/createCourseController";
+import { createCourseController } from "../controllers/instructor.controller/createCourseController";
 import { getAllCourseController } from "../controllers/course.controller/getAllCourseController";
 import { getACourseController } from "../controllers/course.controller/getACourseController";
 import { getACourseBySlugController } from "../controllers/course.controller/getACourseBySlugController";

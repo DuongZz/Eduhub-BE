@@ -5,7 +5,7 @@ import path from 'path';
 
 export const applyInstructorController = async (req: Request, res: Response) => {
   try {
-    const { description, title, linkFb, experience, topic } = req.body;
+    const { title, linkFb, experience, topic } = req.body;
 
     if (!req.file) {
       return res.status(StatusCodes.BAD_REQUEST).json({
@@ -18,7 +18,6 @@ export const applyInstructorController = async (req: Request, res: Response) => 
     const userId = req.user.id;
 
     const applicationData = {
-      description,
       cv: cvUrl,
       title,
       linkFb,

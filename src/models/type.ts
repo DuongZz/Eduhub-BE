@@ -28,3 +28,8 @@ export enum STATUS {
   APPROVED = 'Approved',
   REJECTED = 'Rejected'
 }
+
+export enum APPROVAL_STATUS {
+  PENDING = 'Pending',
+  APPROVED = 'Approved'
+}

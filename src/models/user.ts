@@ -11,7 +11,7 @@ const UserSchema: Schema = new Schema(
         },
         fullName: {
             type: String,
-            default: '',
+            required: true
         },
         email: {
             type: String,
@@ -43,7 +43,7 @@ const UserSchema: Schema = new Schema(
         },
         dateOfBirth: {
             type: Date,
-            default: null,
+            required: true
         },
         role: {
             type: String,

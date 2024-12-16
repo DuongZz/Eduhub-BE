@@ -7,7 +7,6 @@ export interface ICourse {
   introduce: string;
   rating: RATING
   price: number
-  content: string;
   videos: Schema.Types.ObjectId[];
   progress: PROGRESS
   approvedBy: Schema.Types.ObjectId;
@@ -17,4 +16,5 @@ export interface ICourse {
   discount: number;
   category: string;
   subCategories: string;
+  approvalStatus: string;
 }
