@@ -1,7 +1,7 @@
 import Course from "../../models/course";
 import WishList from "../../models/wishList";
 
-export const addCourseToWishListService = async (userId: string, courseId: string) => {
+export const toggleCourseInWishListService = async (userId: string, courseId: string) => {
   try {
     const course = await Course.findById(courseId);
 
@@ -9,25 +9,28 @@ export const addCourseToWishListService = async (userId: string, courseId: strin
       throw new Error("Course not found");
     }
 
-    let cart = await WishList.findOne({ user: userId });
+    let wishList = await WishList.findOne({ user: userId });
 
-    if (!cart) {
-      cart = new WishList({ user: userId, items: [courseId] });
-    } else {
-      const isCourseInWishList = cart.items.some(
-        (item) => item.toString() === courseId
-      );
-
-      if (!isCourseInWishList) {
-        cart.items.push(courseId);
-      }
+    if (!wishList) {
+      wishList = new WishList({ user: userId, items: [courseId] });
+      await wishList.save();
+      return { action: "added", wishList };
     }
 
-    await cart.save();
-    return cart;
+    const courseIndex = wishList.items.findIndex(
+      (item) => item.toString() === courseId
+    );
+
+    if (courseIndex !== -1) {
+      wishList.items.splice(courseIndex, 1);
+      await wishList.save();
+      return { action: "removed", wishList };
+    } else {
+      wishList.items.push(courseId);
+      await wishList.save();
+      return { action: "added", wishList };
+    }
   } catch (error) {
     throw new Error(error.message);
   }
 };
-
-
