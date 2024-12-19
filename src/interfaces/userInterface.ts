@@ -1,5 +1,5 @@
 import { GENDER, ROLE } from "../models/type";
-import { Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 export interface IUser {
     id: Schema.Types.ObjectId;
@@ -14,4 +14,5 @@ export interface IUser {
     email: string;
     password: string;
     role: ROLE;
+    coursePurchased?: mongoose.Types.ObjectId[];
 }

@@ -49,6 +49,13 @@ const UserSchema: Schema = new Schema(
             enum: Object.values(ROLE),
             default: 'LEARNER',
         },
+        coursePurchased: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Course',
+                default: []
+            }
+        ]
     },
     { timestamps: true }
 );

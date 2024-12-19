@@ -2,8 +2,10 @@ import crypto from "crypto";
 import axios from "axios";
 import { StatusCodes } from "http-status-codes";
 import Order from "../../models/order";
+import User from "../../models/user";
 import config from "../../config/config";
 import { PAYMENT_STATUS } from "../../models/type";
+import mongoose from "mongoose";
 
 
 export const initiatePaymentMomo = async (req, res, next) => {
@@ -117,10 +119,33 @@ export const handleMomoIPN = async (req, res) => {
     }
 
     if (resultCode === 0) {
+      // Xử lý khi thanh toán thành công
+      const order = await Order.findById(orderId).populate("user");
+      if (!order) {
+        console.error(`Không tìm thấy đơn hàng ${orderId}`);
+        return res.status(404).json({ error: "Order not found" });
+      }
+
       await Order.findByIdAndUpdate(orderId, {
         paymentStatus: PAYMENT_STATUS.PAID,
-        updateAt: new Date(),
+        updatedAt: new Date(),
       });
+
+      const user = await User.findById(order.user);
+      if (!user) {
+        console.error(`Không tìm thấy user ${order.user}`);
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      order.items.forEach((item) => {
+        const courseId = item.course;
+        if (!user.coursePurchased.includes(courseId)) {
+          user.coursePurchased.push(courseId);
+        }
+      });
+
+      await user.save();
+
       console.log(`Đơn hàng ${orderId} đã được thanh toán thành công`);
     } else {
       console.log(
