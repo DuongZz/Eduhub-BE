@@ -10,8 +10,14 @@ import { validateInstructorApplication } from "../middlewares/validateInstructor
 import { getMyWishListController } from "../controllers/user.controller/getMyWishListController";
 import { toggleCourseInWishListController } from "../controllers/user.controller/addCourseToWishListController";
 import { toggleCourseInCartController } from "../controllers/user.controller/addCourseToCartController";
+import { getAllInstructorController } from "../controllers/instructor.controller/getAllInstructorController";
+import { searchInstructorByNameController } from "../controllers/instructor.controller/searchInstructorByNameController";
+import { getCoursePurchasedController } from "../controllers/user.controller/getCoursePurchasedController";
 
 const router = Router();
+
+router.get('/instructor', getAllInstructorController);
+router.get('/search/instructor', searchInstructorByNameController)
 
 router.use(checkJwt)
 router.post('/apply', validateInstructorApplication, upload.single('cv'), applyInstructorController);
@@ -19,8 +25,11 @@ router.post('/cart/:id', toggleCourseInCartController);
 router.post('/wishlist/:id', toggleCourseInWishListController);
 
 router.get('/my-cart', getMyCartController);
-router.get('/my-wishlist', getMyWishListController)
-router.get("/", getUserInfo)
+router.get('/my-wishlist', getMyWishListController);
+router.get('/profile', getUserInfo);
+router.get('/course-purchased', getCoursePurchasedController)
+
+
 router.patch('/edit-profile', editProfileController);
 
 export default router;

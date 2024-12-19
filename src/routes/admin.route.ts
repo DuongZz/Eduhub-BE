@@ -6,10 +6,17 @@ import { getAApplicationController } from "../controllers/admin.controller/getAA
 import { changeRoleController } from "../controllers/admin.controller/changeRoleController";
 import { getUnapprovedCourseController } from "../controllers/admin.controller/getUnapprovedCourseController";
 import { approvedCourseController } from "../controllers/admin.controller/approvedCourseController";
+import { getAllInstructorController } from "../controllers/instructor.controller/getAllInstructorController";
+import { searchInstructorByNameController } from "../controllers/instructor.controller/searchInstructorByNameController";
 
 const router = Router();
+
+
 router.use(checkJwt);
 router.use(checkRoleAdmin);
+
+router.get('/instructor', getAllInstructorController);
+router.get('/search/instructor', searchInstructorByNameController)
 
 router.get('/application/:id', getAApplicationController)
 router.get('/application', getAllApplicationController)

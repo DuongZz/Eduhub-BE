@@ -1,4 +1,5 @@
 import Course from '../../models/course';
+import Instructor from '../../models/instructor';
 
 export const approvedCourseService = async (courseId: string) => {
   try {
@@ -10,8 +11,15 @@ export const approvedCourseService = async (courseId: string) => {
 
     course.approvalStatus = 'Approved';
     await course.save();
+    if (course.approvedBy) {
+      await Instructor.findOneAndUpdate(
+        { user: course.approvedBy },
+        { $inc: { courseAmount: 1 } },
+        { new: true }
+      );
+    }
 
-    return { alreadyApproved: false, course };
+    return course;
   } catch (err) {
     throw new Error(err.message);
   }
