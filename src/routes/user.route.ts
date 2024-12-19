@@ -23,5 +23,4 @@ router.get('/my-wishlist', getMyWishListController)
 router.get("/", getUserInfo)
 router.patch('/edit-profile', editProfileController);
 
-
 export default router;

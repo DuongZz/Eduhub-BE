@@ -52,7 +52,7 @@ const config = {
         accessKey: MOMO_ACCESS_KEY,
         secretKey: MOMO_SECRET_KEY,
         orderInfo: "PayWithMOMO",
-        partnerCode: "Eduhub",
+        partnerCode: "MOMO",
         redirectUrl: REDIRECT_URL_MOMO,
         ipnUrl: IPN_URL_MOMO,
         requestType: "payWithMethod",

@@ -33,3 +33,9 @@ export enum APPROVAL_STATUS {
   PENDING = 'Pending',
   APPROVED = 'Approved'
 }
+
+export enum PAYMENT_STATUS {
+  PENDING = 'Pending',
+  PAID = 'Paid',
+  FAIL = 'Fail'
+}
