@@ -74,6 +74,13 @@ const courseSchema: Schema = new Schema(
       type: String,
       enum: Object.values(APPROVAL_STATUS),
       default: APPROVAL_STATUS.PENDING
+    },
+    ratingNum: {
+      type: Number,
+      default: 0
+    },
+    poster: {
+      type: String,
     }
   },
   { timestamps: true }

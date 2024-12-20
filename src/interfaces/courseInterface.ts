@@ -17,4 +17,6 @@ export interface ICourse {
   category: string;
   subCategories: string;
   approvalStatus: string;
+  ratingNum: number;
+  poster: string;
 }
