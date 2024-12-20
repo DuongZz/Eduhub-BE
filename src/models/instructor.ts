@@ -8,10 +8,6 @@ const InstructorSchema: Schema = new Schema(
       ref: 'User',
       required: true,
     },
-    description: {
-      type: String,
-      required: true,
-    },
     cv: {
       type: String,
       required: true,

@@ -25,13 +25,15 @@ export const changeRoleService = async (applicationId: string) => {
 
     const newInstructor = await Instructor.create({
       user: userId,
-      description: application.description,
       cv: application.cv,
       title: application.title,
       linkFb: application.linkFb || '',
       experience: application.experience || '',
       topic: application.topic || '',
-    });
+      students: application.students || 0,
+      rating: application.rating || 0,
+      courseAmount: application.courseAmount || 0,
+    })
 
     await Application.findByIdAndUpdate(applicationId, { status: 'Approved' });
 
