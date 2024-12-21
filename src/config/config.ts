@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 // DECLARE ALL VARIABLES
+const AVT_DF = process.env.AVT_DF;
 const MONGO_DB_USER = process.env.MONGO_DB_USER || '';
 const NODE_ENV = process.env.NODE_ENV || '';
 const MONGO_DB_PASSWORD = process.env.MONGO_DB_PASSWORD || '';
@@ -61,7 +62,8 @@ const config = {
         autoCapture: true,
         lang: "vi",
         endpoints: ENDPOINT_MOMO,
-    }
+    },
+    avatar: AVT_DF
 };
 
 //CHECK FOR ENVIRONMENT

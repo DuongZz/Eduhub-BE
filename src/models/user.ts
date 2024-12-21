@@ -1,13 +1,14 @@
 // models/user.ts
 import mongoose, { Document, Schema } from 'mongoose';
 import { GENDER, ROLE } from './type';
+import config from '../config/config';
 
 // DEFINE USER SCHEMA
 const UserSchema: Schema = new Schema(
     {
         avatar: {
             type: String,
-            default: '',
+            default: config.avatar,
         },
         fullName: {
             type: String,
