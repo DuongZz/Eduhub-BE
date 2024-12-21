@@ -16,11 +16,14 @@ export const updateCourseInfoService = async (courseId: string, updates: any, fi
   const data = await s3.upload(params).promise();
   const posterUrl = data.Location;
   try {
-    const updatedCourse = await Course.findByIdAndUpdate(courseId, updates, { new: true });
+    const updatedData = { ...updates, poster: posterUrl };
+
+    const updatedCourse = await Course.findByIdAndUpdate(courseId, updatedData, { new: true });
+
     if (!updatedCourse) {
       throw new Error('Course not found');
     }
-    return { updatedCourse, posterUrl };
+    return { updatedCourse };
   } catch (error) {
     throw new Error(`Failed to update course: ${error.message}`);
   }
