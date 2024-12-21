@@ -19,6 +19,6 @@ export const createCourseController = async (req: Request, res: Response) => {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
       message: 'Error creating course',
       error: error.message,
-    });
+    })
   }
-};
+}

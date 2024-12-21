@@ -4,7 +4,7 @@ import { getMyCourseService } from '../../services/instructor/getMyCourseService
 
 export const getMyCourseController = async (req: Request, res: Response) => {
   try {
-    const { id } = req.user.id;
+    const { id } = req.user;
     const course = await getMyCourseService(id);
     res.status(StatusCodes.OK).json(course);
   } catch (err) {
