@@ -13,9 +13,11 @@ import { toggleCourseInCartController } from "../controllers/user.controller/add
 import { getAllInstructorController } from "../controllers/instructor.controller/getAllInstructorController";
 import { searchInstructorByNameController } from "../controllers/instructor.controller/searchInstructorByNameController";
 import { getCoursePurchasedController } from "../controllers/user.controller/getCoursePurchasedController";
+import { getAInstructorInfoController } from "../controllers/user.controller/getInstructorInfoController";
 
 const router = Router();
 
+router.get('/instructor/:id', getAInstructorInfoController)
 router.get('/instructor', getAllInstructorController);
 router.get('/search/instructor', searchInstructorByNameController)
 
