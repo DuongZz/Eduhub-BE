@@ -5,7 +5,7 @@ import { checkJwt } from "../middlewares/authMiddleware";
 import { getALessonBySlugController } from "../controllers/lesson.controller/getALessonBySlugController";
 import { videoUploadMiddleware } from "../middlewares/uploadVideoMiddleware";
 const router = Router();
-router.get('/:courseSlug/:lessonSlug', getALessonBySlugController)
+router.get('/:courseSlug/:lessonId', getALessonBySlugController)
 router.post('/upload/:courseId', checkJwt, checkRoleInstructor, videoUploadMiddleware, uploadLessonController)
 
 export default router
