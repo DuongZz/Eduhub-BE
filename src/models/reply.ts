@@ -9,11 +9,6 @@ const replySchema: Schema = new Schema(
       ref: 'Comment',
       required: true,
     },
-    replyId: {
-      type: String,
-      default: uuidv4,
-      unique: true
-    },
     replyContent: {
       type: String,
     },
