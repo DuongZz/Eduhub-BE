@@ -4,8 +4,8 @@ import { getALessonBySlugService } from '../../services/lesson/getALessonBySlugS
 
 export const getALessonBySlugController = async (req: Request, res: Response) => {
   try {
-    const { courseSlug, lessonSlug } = req.params;
-    const lesson = await getALessonBySlugService(courseSlug, lessonSlug);
+    const { courseSlug, lessonId } = req.params;
+    const lesson = await getALessonBySlugService(courseSlug, lessonId);
     if (!lesson) {
       return res.status(StatusCodes.NOT_FOUND).json('Lesson not found');
     }

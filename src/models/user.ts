@@ -1,17 +1,18 @@
 // models/user.ts
 import mongoose, { Document, Schema } from 'mongoose';
 import { GENDER, ROLE } from './type';
+import config from '../config/config';
 
 // DEFINE USER SCHEMA
 const UserSchema: Schema = new Schema(
     {
         avatar: {
             type: String,
-            default: '',
+            default: config.avatar,
         },
         fullName: {
             type: String,
-            default: '',
+            required: true
         },
         email: {
             type: String,
@@ -43,13 +44,19 @@ const UserSchema: Schema = new Schema(
         },
         dateOfBirth: {
             type: Date,
-            default: null,
         },
         role: {
             type: String,
             enum: Object.values(ROLE),
             default: 'LEARNER',
         },
+        coursePurchased: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Course',
+                default: []
+            }
+        ]
     },
     { timestamps: true }
 );

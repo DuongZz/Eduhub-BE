@@ -8,10 +8,6 @@ const InstructorSchema: Schema = new Schema(
       ref: 'User',
       required: true,
     },
-    description: {
-      type: String,
-      required: true,
-    },
     cv: {
       type: String,
       required: true,
@@ -37,6 +33,10 @@ const InstructorSchema: Schema = new Schema(
       default: 0
     },
     rating: {
+      type: Number,
+      default: 0
+    },
+    courseAmount: {
       type: Number,
       default: 0
     }

@@ -4,9 +4,9 @@ export interface ICourse {
   id?: Schema.Types.ObjectId;
   courseName: string
   description: string
+  introduce: string;
   rating: RATING
   price: number
-  content: string;
   videos: Schema.Types.ObjectId[];
   progress: PROGRESS
   approvedBy: Schema.Types.ObjectId;
@@ -16,4 +16,7 @@ export interface ICourse {
   discount: number;
   category: string;
   subCategories: string;
+  approvalStatus: string;
+  ratingNum: number;
+  poster: string;
 }

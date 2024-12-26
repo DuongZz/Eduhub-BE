@@ -1,8 +1,7 @@
-import mongoose from "mongoose";
 import Cart from "../../models/cart";
 import Course from "../../models/course";
 
-export const addToCartService = async (userId: string, courseId: string) => {
+export const toggleCourseInCartService = async (userId: string, courseId: string) => {
   try {
     const course = await Course.findById(courseId);
 
@@ -14,21 +13,24 @@ export const addToCartService = async (userId: string, courseId: string) => {
 
     if (!cart) {
       cart = new Cart({ user: userId, items: [courseId] });
-    } else {
-      const isCourseInCart = cart.items.some(
-        (item) => item.toString() === courseId
-      );
-
-      if (!isCourseInCart) {
-        cart.items.push(courseId);
-      }
+      await cart.save();
+      return { action: "added", cart };
     }
 
-    await cart.save();
-    return cart;
+    const courseIndex = cart.items.findIndex(
+      (item) => item.toString() === courseId
+    );
+
+    if (courseIndex !== -1) {
+      cart.items.splice(courseIndex, 1);
+      await cart.save();
+      return { action: "removed", cart };
+    } else {
+      cart.items.push(courseId);
+      await cart.save();
+      return { action: "added", cart };
+    }
   } catch (error) {
     throw new Error(error.message);
   }
 };
-
-

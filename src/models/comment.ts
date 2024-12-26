@@ -1,25 +1,29 @@
 import mongoose, { Schema } from 'mongoose';
+import { RATING } from './type';
 
 const commentSchema: Schema = new Schema(
   {
     commentContent: {
       type: String,
+      required: true,
     },
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
       required: true,
     },
-    discussionId: {
+    courseId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Discussion',
+      ref: 'Course',
       required: true,
     },
-    replyComment: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Reply',
-      required: true,
-    },
+    replyComment: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Reply',
+        default: []
+      }
+    ],
     commentedDate: {
       type: Date,
       default: Date.now

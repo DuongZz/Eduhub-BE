@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
-import { PROGRESS, RATING } from './type';
+import { APPROVAL_STATUS, PROGRESS, RATING } from './type';
 
 
 const courseSchema: Schema = new Schema(
@@ -12,6 +12,10 @@ const courseSchema: Schema = new Schema(
       type: String,
       default: '',
     },
+    introduce: {
+      type: String,
+      default: ''
+    },
     rating: {
       type: String,
       enum: Object.values(RATING),
@@ -21,10 +25,6 @@ const courseSchema: Schema = new Schema(
     price: {
       type: Number,
       default: 0,
-    },
-    content: {
-      type: String,
-      required: true
     },
     videos: [
       {
@@ -63,15 +63,25 @@ const courseSchema: Schema = new Schema(
     category: {
       type: String,
       ref: 'Category',
-      required: true,
     },
     subCategories: [
       {
         type: String,
         ref: 'Category',
-        required: true
       }
     ],
+    approvalStatus: {
+      type: String,
+      enum: Object.values(APPROVAL_STATUS),
+      default: APPROVAL_STATUS.PENDING
+    },
+    ratingNum: {
+      type: Number,
+      default: 0
+    },
+    poster: {
+      type: String,
+    }
   },
   { timestamps: true }
 )

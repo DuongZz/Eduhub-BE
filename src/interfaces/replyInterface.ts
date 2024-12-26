@@ -5,7 +5,7 @@ export interface IReply {
   commentId: Schema.Types.ObjectId;
   replyContent: string
   userId: Schema.Types.ObjectId;
-  reply_date: Date
-  number_of_like: number
-  number_of_dislike: number
+  reply_date?: Date
+  number_of_like?: number
+  number_of_dislike?: number
 }
