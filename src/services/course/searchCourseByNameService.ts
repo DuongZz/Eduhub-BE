@@ -8,8 +8,9 @@ export const searchCourseByNameService = async (nameCourse: string, page: number
     const courses = await Course.find({
       courseName: { $regex: normalizedKeyword, $options: 'i' },
     }).skip(skip).limit(limit);
-
-    return { courses };
+    const total = await Course.countDocuments({ courseName: { $regex: normalizedKeyword, $options: 'i' } });
+    const totalPages = Math.ceil(total / limit);
+    return { courses, total, totalPages, };
   } catch (err) {
     throw new Error(err);
   }

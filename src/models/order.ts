@@ -11,6 +11,12 @@ const OrderSchema: Schema = new Schema(
           ref: 'Course',
           required: true
         },
+        courseName: {
+          type: String
+        },
+        slug: {
+          type: String
+        },
         price: {
           type: Number,
           required: true

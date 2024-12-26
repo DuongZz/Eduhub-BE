@@ -33,6 +33,7 @@ export const getAllCourseService = async () => {
           _id: 0,
           instructorId: '$user',
           name: '$instructorDetails.fullName',
+          avatar: '$instructorDetails.avatar',
           title: 1,
           rating: 1,
         },

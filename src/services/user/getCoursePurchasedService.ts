@@ -5,11 +5,17 @@ export const getCoursePurchasedService = async (userId: string) => {
     const coursePurchased = await User.findById(userId)
       .populate({
         path: 'coursePurchased',
-        select: 'courseName approvedBy',
-        populate: {
-          path: 'approvedBy',
-          select: 'fullName',
-        },
+        select: 'courseName slug poster approvedBy videos',
+        populate: [
+          {
+            path: 'approvedBy',
+            select: 'fullName',
+          },
+          {
+            path: 'videos',
+            select: 'lessonName'
+          }
+        ]
       });
     return coursePurchased;
   } catch (err) {

@@ -16,6 +16,8 @@ export const createOrderService = async (userId: string, courseIds: string[]) =>
       totalAmount += finalPrice;
       return {
         course: course._id,
+        courseName: course.courseName,
+        slug: course.slug,
         price: course.price,
         discount: course.discount || 0,
       };
