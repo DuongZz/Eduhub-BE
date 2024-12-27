@@ -6,7 +6,7 @@ const answerSchema: Schema = new Schema(
       type: String,
       required: true,
     },
-    correct: {
+    isCorrect: {
       type: Boolean,
       required: true,
     },

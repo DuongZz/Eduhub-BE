@@ -14,6 +14,9 @@ import { getAllInstructorController } from "../controllers/instructor.controller
 import { searchInstructorByNameController } from "../controllers/instructor.controller/searchInstructorByNameController";
 import { getCoursePurchasedController } from "../controllers/user.controller/getCoursePurchasedController";
 import { getAInstructorInfoController } from "../controllers/user.controller/getInstructorInfoController";
+import { getAllQuizzesByCourseController } from "../controllers/quiz.controller/getAllQuizController";
+import { getQuizByIdController } from "../controllers/quiz.controller/getQuizByIdController";
+import { submitQuizController } from "../controllers/quiz.controller/submitQuizController";
 
 const router = Router();
 
@@ -29,8 +32,10 @@ router.post('/wishlist/:id', toggleCourseInWishListController);
 router.get('/my-cart', getMyCartController);
 router.get('/my-wishlist', getMyWishListController);
 router.get('/profile', getUserInfo);
-router.get('/course-purchased', getCoursePurchasedController)
-
+router.get('/course-purchased', getCoursePurchasedController);
+router.get('/quiz/:courseId', getAllQuizzesByCourseController);
+router.get('/:courseId/:quizId', getQuizByIdController)
+router.post('/quiz/submit', submitQuizController)
 
 router.patch('/edit-profile', editProfileController);
 

@@ -9,7 +9,7 @@ export const generateAccessToken = (user) => {
       },
       env.token.access,
       {
-        expiresIn: '1D'
+        expiresIn: '15D'
       }
     );
   } catch (error) {

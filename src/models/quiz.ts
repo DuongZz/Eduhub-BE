@@ -1,32 +1,38 @@
 import mongoose, { Schema } from 'mongoose';
 
-
 const quizSchema: Schema = new Schema(
   {
-    question: {
+    quizName: {
       type: String,
-      default: ''
-    },
-    response: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Answer',
       required: true,
     },
-    answer: [
+    instructorId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Instructor',
+      required: true,
+    },
+    courseId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Course',
+      required: true,
+    },
+    questions: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Answer',
-      },
+        ref: 'Question',
+        required: true,
+      }
     ],
-    maxScore: {
-      type: Number,
-      required: true,
-    },
     durationTime: {
       type: Number,
-      required: true,
+      required: false,
     },
-  }
-)
+    maxScore: {
+      type: Number,
+      required: false,
+    },
+  },
+  { timestamps: true }
+);
 
-export default mongoose.model('Quiz', quizSchema)
+export default mongoose.model('Quiz', quizSchema);
