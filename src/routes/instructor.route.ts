@@ -7,6 +7,7 @@ import { getMyCourseController } from "../controllers/instructor.controller/getM
 import { posterUploadMiddleware } from "../middlewares/uploadPosterCourse";
 import { getACourseByIdController } from "../controllers/instructor.controller/getACourseByIdController";
 import { createQuizController } from "../controllers/instructor.controller/createQuizController";
+import { getLessonAndQuizController } from "../controllers/instructor.controller/getLessonAndQuizController";
 
 const router = Router();
 router.use(checkJwt);
@@ -14,6 +15,7 @@ router.use(checkRoleInstructor);
 
 router.get('/my-course', getMyCourseController);
 router.get('/course/:id', getACourseByIdController)
+router.get('/lesson-and-quiz/:courseId', getLessonAndQuizController)
 
 router.post('/create-quiz', createQuizController)
 router.post('/course/create', createCourseController);
