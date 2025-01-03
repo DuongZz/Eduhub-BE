@@ -7,21 +7,7 @@ export const getALessonBySlugService = async (courseSlug: string, lessonId: stri
     if (!course) {
       throw new Error('Course not found');
     }
-    const lesson = await (await Lesson.findOne({ id: lessonId }))
-      .populate({
-        path: "courseId",
-        select: "courseName approvedBy videos",
-        populate: [
-          {
-            path: "approvedBy",
-            select: "fullName, avatar"
-          },
-          {
-            path: 'videos',
-            select: 'lessonName'
-          }
-        ]
-      })
+    const lesson = await Lesson.findOne({ _id: lessonId })
     return lesson;
   } catch (err) {
     throw new Error(err);
