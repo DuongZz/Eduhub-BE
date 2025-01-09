@@ -16,10 +16,7 @@ export const getCoursesBySubCategoryController = async (req: Request, res: Respo
       });
     }
 
-    res.status(StatusCodes.OK).json({
-      message: 'Courses retrieved successfully.',
-      data: courses,
-    });
+    res.status(StatusCodes.OK).json({ courses });
   } catch (error) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
       message: error.message || 'Error retrieving courses.',

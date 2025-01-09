@@ -3,8 +3,7 @@ import User from "../../models/user";
 
 export const editProfileService = async (userId: string, userProfile: IUser) => {
   try {
-    const { fullName, gender, dateOfBirth, country, province,
-      province_city, phone, avatar, email } = userProfile;
+    const { fullName, gender, dateOfBirth, country, city, phone, avatar, email } = userProfile;
 
     const updatedProfile = await User.findByIdAndUpdate(userId,
       {
@@ -12,8 +11,7 @@ export const editProfileService = async (userId: string, userProfile: IUser) => 
         gender: gender,
         dateOfBirth: dateOfBirth,
         country: country,
-        province: province,
-        province_city: province_city,
+        city: city,
         phone: phone,
         avatar: avatar,
         email: email,

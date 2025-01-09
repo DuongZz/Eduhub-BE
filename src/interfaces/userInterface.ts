@@ -7,8 +7,7 @@ export interface IUser {
     gender: GENDER;
     dateOfBirth: Date;
     country: string;
-    province: string;
-    province_city: string;
+    city: string;
     phone: string;
     avatar: string;
     email: string;
