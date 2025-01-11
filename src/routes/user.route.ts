@@ -18,6 +18,7 @@ import { getAllQuizzesByCourseController } from "../controllers/quiz.controller/
 import { getQuizByIdController } from "../controllers/quiz.controller/getQuizByIdController";
 import { submitQuizController } from "../controllers/quiz.controller/submitQuizController";
 import { changePasswordController } from "../controllers/user.controller/changePassword";
+import { getQuizAttemptController } from "../controllers/user.controller/getQuizAttemptController";
 
 const router = Router();
 
@@ -35,9 +36,10 @@ router.get('/my-cart', getMyCartController);
 router.get('/my-wishlist', getMyWishListController);
 router.get('/profile', getUserInfo);
 router.get('/course-purchased', getCoursePurchasedController);
+router.get('/result/:quizId', getQuizAttemptController);
 router.get('/quiz/:courseId', getAllQuizzesByCourseController);
-router.get('/:courseId/:quizId', getQuizByIdController)
-router.post('/quiz/submit', submitQuizController)
+router.get('/:courseId/:quizId', getQuizByIdController);
+router.post('/quiz/submit', submitQuizController);
 
 router.patch('/edit-profile', editProfileController);
 

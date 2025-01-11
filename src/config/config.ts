@@ -4,6 +4,7 @@ dotenv.config();
 
 // DECLARE ALL VARIABLES
 const AVT_DF = process.env.AVT_DF;
+const POSTER_DF = process.env.POSTER_DF;
 const MONGO_DB_USER = process.env.MONGO_DB_USER || '';
 const NODE_ENV = process.env.NODE_ENV || '';
 const MONGO_DB_PASSWORD = process.env.MONGO_DB_PASSWORD || '';
@@ -63,7 +64,8 @@ const config = {
         lang: "vi",
         endpoints: ENDPOINT_MOMO,
     },
-    avatar: AVT_DF
+    avatar: AVT_DF,
+    poster: POSTER_DF
 };
 
 //CHECK FOR ENVIRONMENT

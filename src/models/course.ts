@@ -1,5 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 import { APPROVAL_STATUS, PROGRESS, RATING } from './type';
+import config from '../config/config';
 
 
 const courseSchema: Schema = new Schema(
@@ -81,6 +82,7 @@ const courseSchema: Schema = new Schema(
     },
     poster: {
       type: String,
+      default: config.poster
     },
     target: [
       {
