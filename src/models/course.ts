@@ -81,7 +81,13 @@ const courseSchema: Schema = new Schema(
     },
     poster: {
       type: String,
-    }
+    },
+    target: [
+      {
+        type: String,
+        default: ''
+      }
+    ]
   },
   { timestamps: true }
 )

@@ -19,4 +19,5 @@ export interface ICourse {
   approvalStatus: string;
   ratingNum: number;
   poster: string;
+  target: string[];
 }
