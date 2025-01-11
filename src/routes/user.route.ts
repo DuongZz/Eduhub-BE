@@ -17,6 +17,7 @@ import { getAInstructorInfoController } from "../controllers/user.controller/get
 import { getAllQuizzesByCourseController } from "../controllers/quiz.controller/getAllQuizController";
 import { getQuizByIdController } from "../controllers/quiz.controller/getQuizByIdController";
 import { submitQuizController } from "../controllers/quiz.controller/submitQuizController";
+import { changePasswordController } from "../controllers/user.controller/changePassword";
 
 const router = Router();
 
@@ -25,6 +26,7 @@ router.get('/instructor', getAllInstructorController);
 router.get('/search/instructor', searchInstructorByNameController)
 
 router.use(checkJwt)
+router.post('/change-password', changePasswordController)
 router.post('/apply', validateInstructorApplication, upload.single('cv'), applyInstructorController);
 router.post('/cart/:id', toggleCourseInCartController);
 router.post('/wishlist/:id', toggleCourseInWishListController);

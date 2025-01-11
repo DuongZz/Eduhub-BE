@@ -14,4 +14,6 @@ export interface IUser {
     password: string;
     role: ROLE;
     coursePurchased?: mongoose.Types.ObjectId[];
+    resetPasswordOTP?: string;
+    resetPasswordOTPExpire?: Date;
 }
