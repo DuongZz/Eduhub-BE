@@ -22,6 +22,7 @@ import { getQuizAttemptController } from "../controllers/user.controller/getQuiz
 import { upAvatarController } from "../controllers/user.controller/upAvatarController";
 import { avatarUploadMiddleware } from "../middlewares/uploadAvatar";
 import { rateACourseController } from "../controllers/user.controller/rateACourseController";
+import { getRateController } from "../controllers/user.controller/getRateController";
 
 const router = Router();
 
@@ -37,6 +38,7 @@ router.post('/wishlist/:id', toggleCourseInWishListController);
 router.post('/avatar', avatarUploadMiddleware, upAvatarController);
 router.post('/rate/:slug', rateACourseController)
 
+router.get('/rate/:courseId', getRateController)
 router.get('/my-cart', getMyCartController);
 router.get('/my-wishlist', getMyWishListController);
 router.get('/profile', getUserInfo);
@@ -45,6 +47,7 @@ router.get('/result/:quizId', getQuizAttemptController);
 router.get('/quiz/:courseId', getAllQuizzesByCourseController);
 router.get('/:courseId/:quizId', getQuizByIdController);
 router.post('/quiz/submit', submitQuizController);
+
 
 router.patch('/edit-profile', editProfileController);
 
