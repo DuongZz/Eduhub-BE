@@ -19,6 +19,8 @@ import { getQuizByIdController } from "../controllers/quiz.controller/getQuizByI
 import { submitQuizController } from "../controllers/quiz.controller/submitQuizController";
 import { changePasswordController } from "../controllers/user.controller/changePassword";
 import { getQuizAttemptController } from "../controllers/user.controller/getQuizAttemptController";
+import { upAvatarController } from "../controllers/user.controller/upAvatarController";
+import { avatarUploadMiddleware } from "../middlewares/uploadAvatar";
 
 const router = Router();
 
@@ -31,6 +33,7 @@ router.post('/change-password', changePasswordController)
 router.post('/apply', validateInstructorApplication, upload.single('cv'), applyInstructorController);
 router.post('/cart/:id', toggleCourseInCartController);
 router.post('/wishlist/:id', toggleCourseInWishListController);
+router.post('/avatar', avatarUploadMiddleware, upAvatarController)
 
 router.get('/my-cart', getMyCartController);
 router.get('/my-wishlist', getMyWishListController);
