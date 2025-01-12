@@ -20,4 +20,5 @@ export interface ICourse {
   ratingNum: number;
   poster: string;
   target: string[];
+  ratingComment: Schema.Types.ObjectId[];
 }
