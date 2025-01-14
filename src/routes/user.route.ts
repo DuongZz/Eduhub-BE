@@ -23,6 +23,8 @@ import { upAvatarController } from "../controllers/user.controller/upAvatarContr
 import { avatarUploadMiddleware } from "../middlewares/uploadAvatar";
 import { rateACourseController } from "../controllers/user.controller/rateACourseController";
 import { getRateController } from "../controllers/user.controller/getRateController";
+import { chatWithGeminiController } from "../controllers/user.controller/chatWithGeminiController";
+import { getChatWithGeminiController } from "../controllers/user.controller/getChatWithGeminiController";
 
 const router = Router();
 
@@ -36,7 +38,8 @@ router.post('/apply', validateInstructorApplication, upload.single('cv'), applyI
 router.post('/cart/:id', toggleCourseInCartController);
 router.post('/wishlist/:id', toggleCourseInWishListController);
 router.post('/avatar', avatarUploadMiddleware, upAvatarController);
-router.post('/rate/:slug', rateACourseController)
+router.post('/rate/:slug', rateACourseController);
+router.post('/chat', chatWithGeminiController)
 
 router.get('/rate/:courseId', getRateController)
 router.get('/my-cart', getMyCartController);
@@ -46,6 +49,7 @@ router.get('/course-purchased', getCoursePurchasedController);
 router.get('/result/:quizId', getQuizAttemptController);
 router.get('/quiz/:courseId', getAllQuizzesByCourseController);
 router.get('/:courseId/:quizId', getQuizByIdController);
+router.get('/chat', getChatWithGeminiController)
 router.post('/quiz/submit', submitQuizController);
 
 

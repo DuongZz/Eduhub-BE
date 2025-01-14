@@ -26,6 +26,7 @@ const MOMO_SECRET_KEY = process.env.MOMO_SECRET_KEY;
 const REDIRECT_URL_MOMO = process.env.REDIRECT_URL_MOMO;
 const IPN_URL_MOMO = process.env.IPN_URL_MOMO;
 const ENDPOINT_MOMO = process.env.ENDPOINT_MOMO;
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
 //CREATE CONFIG OBJECT
 const config = {
@@ -65,7 +66,8 @@ const config = {
         endpoints: ENDPOINT_MOMO,
     },
     avatar: AVT_DF,
-    poster: POSTER_DF
+    poster: POSTER_DF,
+    gemini: GEMINI_API_KEY
 };
 
 //CHECK FOR ENVIRONMENT
