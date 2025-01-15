@@ -8,7 +8,7 @@ export const getCoursesBySubCategoryController = async (req: Request, res: Respo
 
     const pageNum = page ? Number(page) : 1;
 
-    const courses = await getCourseBySubCategoryService(slug as string, pageNum);
+    const { courses, suggestedCourses, total, totalPages } = await getCourseBySubCategoryService(slug as string, pageNum);
 
     if (courses.length === 0) {
       return res.status(StatusCodes.NOT_FOUND).json({
@@ -16,7 +16,15 @@ export const getCoursesBySubCategoryController = async (req: Request, res: Respo
       });
     }
 
-    res.status(StatusCodes.OK).json({ courses });
+    return res.status(StatusCodes.OK).json({
+      message: 'Courses retrieved successfully',
+      data: {
+        totalPages,
+        total,
+        courses,
+        suggestedCourses,
+      },
+    });
   } catch (error) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
       message: error.message || 'Error retrieving courses.',
