@@ -5,8 +5,9 @@ import { StatusCodes } from "http-status-codes";
 export const getAllQuizzesByCourseController = async (req: Request, res: Response) => {
   try {
     const { courseId } = req.params;
+    const userId = req.user.id;
 
-    const quizzes = await getAllQuizzesByCourseService(courseId);
+    const quizzes = await getAllQuizzesByCourseService(courseId, userId);
 
     res.status(StatusCodes.OK).json({
       message: "Quizzes fetched successfully",
