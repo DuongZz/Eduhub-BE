@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 // DECLARE ALL VARIABLES
+const EDUHUB_HOST = process.env.EDUHUB_HOST;
 const AVT_DF = process.env.AVT_DF;
 const POSTER_DF = process.env.POSTER_DF;
 const MONGO_DB_USER = process.env.MONGO_DB_USER || '';
@@ -27,6 +28,13 @@ const REDIRECT_URL_MOMO = process.env.REDIRECT_URL_MOMO;
 const IPN_URL_MOMO = process.env.IPN_URL_MOMO;
 const ENDPOINT_MOMO = process.env.ENDPOINT_MOMO;
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+// ZALO
+const ZALO_API_ID = process.env.ZALO_API_ID
+const ZALO_KEY_1 = process.env.ZALO_KEY_1
+const ZALO_KEY_2 = process.env.ZALO_KEY_2
+const ENDPOINT_ZALO = process.env.ENDPOINT_ZALO
+const ZALO_CALLBACK = process.env.ZALO_CALLBACK
+
 
 //CREATE CONFIG OBJECT
 const config = {
@@ -65,9 +73,17 @@ const config = {
         lang: "vi",
         endpoints: ENDPOINT_MOMO,
     },
+    zalo: {
+        zalo_api_id: ZALO_API_ID,
+        zalo_key1: ZALO_KEY_1,
+        zalo_key2: ZALO_KEY_2,
+        zalo_callback: ZALO_CALLBACK,
+        zalo_endpoint: ENDPOINT_ZALO
+    },
     avatar: AVT_DF,
     poster: POSTER_DF,
-    gemini: GEMINI_API_KEY
+    gemini: GEMINI_API_KEY,
+    eduhub_host: EDUHUB_HOST
 };
 
 //CHECK FOR ENVIRONMENT
