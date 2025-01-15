@@ -5,7 +5,8 @@ import { StatusCodes } from "http-status-codes";
 import Order from "../../models/order";
 import config from "../../config/config";
 import { ZaloCallbackResponse, ZaloOrder } from "../../interfaces/zalopayInterface";
-import order from "../../models/order";
+import User from "../../models/user";
+import Cart from "../../models/cart";
 // Tạo thanh toán với ZaloPay
 export const createPaymentWithZalo = async (req, res, next) => {
   try {
@@ -79,11 +80,47 @@ export const zaloCallback = async (req, res) => {
       const id = dataJson["app_trans_id"].split("_")[1];
       console.log("orderId", id);
 
+      const order = await Order.findById(id).populate("user");
+      if (!order) {
+        console.error(`Không tìm thấy đơn hàng ${id}`);
+        return res.status(404).json({ error: "Order not found" });
+      }
+
       // Cập nhật trạng thái đơn hàng
-      await order.findByIdAndUpdate(id, {
+      await Order.findByIdAndUpdate(id, {
         paymentStatus: "Paid",
         updateAt: Date.now()
       })
+
+      const user = await User.findById(order.user);
+      if (!user) {
+        console.error(`Không tìm thấy người dùng ${id}`);
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      // Thêm các khóa học vào danh sách khóa học đã mua của người dùng
+      for (const item of order.items) {
+        const courseId = item.course;
+        const cart = await Cart.findOne({ user: user._id });
+
+        if (cart && Array.isArray(cart.items)) {
+          const courseIndex = cart.items.findIndex(
+            (cartItem) => cartItem.toString() === courseId.toString()
+          );
+
+          if (courseIndex !== -1) {
+            cart.items.splice(courseIndex, 1); // Xóa khóa học khỏi giỏ hàng
+            await cart.save();
+          }
+        }
+
+        if (!user.coursePurchased.includes(courseId)) {
+          user.coursePurchased.push(courseId); // Thêm khóa học vào mảng khóa học đã mua
+        }
+      }
+
+      await user.save();
+
 
       console.log(`Đơn hàng ${id} đã được thanh toán thành công`);
 
