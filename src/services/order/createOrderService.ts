@@ -41,6 +41,7 @@ export const createOrderService = async (userId: string, courseIds: string[]) =>
     cart.items = cart.items.filter(
       (cartItem) => !courseIds.includes(cartItem.toString())
     );
+    await cart.save();
 
     await newOrder.save();
     return newOrder;

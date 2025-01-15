@@ -18,7 +18,7 @@ export const getQuizAttemptService = async (quizId: string, userId: string) => {
       throw new Error("Quiz attempt not found.");
     }
 
-    const quiz = await Quiz.findById(quizId).select('quizName');
+    const quiz = await Quiz.findById(quizId).select('quizName questions');
 
     const result = {
       quizName: quiz.quizName,
