@@ -9,6 +9,7 @@ import { approvedCourseController } from "../controllers/admin.controller/approv
 import { getAllInstructorController } from "../controllers/instructor.controller/getAllInstructorController";
 import { searchInstructorByNameController } from "../controllers/instructor.controller/searchInstructorByNameController";
 import { adminLogin } from "../controllers/admin.controller/loginAdmin";
+import { getUserOrderController } from "../controllers/admin.controller/getUserOrderController";
 
 const router = Router();
 
@@ -22,6 +23,7 @@ router.get('/search/instructor', searchInstructorByNameController)
 router.get('/application/:id', getAApplicationController)
 router.get('/application', getAllApplicationController)
 router.get('/unapproved-course', getUnapprovedCourseController)
+router.get('/user/order', getUserOrderController)
 
 router.post('/change-role/:id', changeRoleController);
 router.post('/approve/course/:id', approvedCourseController)
