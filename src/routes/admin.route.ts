@@ -18,6 +18,7 @@ import { getAllCommentAdminController } from "../controllers/admin.controller/ge
 import { deleteCommentAdminController } from "../controllers/admin.controller/deleteCommentAdminController";
 import { getAllCourseAdminController } from "../controllers/admin.controller/getAllCourseAdminController";
 import { getACourseByIdController } from "../controllers/admin.controller/getACourseByIdAdminController";
+import { getApplicationByOptionController } from "../controllers/admin.controller/getApplicationByOptionController";
 
 const router = Router();
 
@@ -27,7 +28,7 @@ router.use(checkRoleAdmin);
 
 router.get('/instructor', getAllInstructorController);
 router.get('/search/instructor', searchInstructorByNameController)
-
+router.get('/application/option', getApplicationByOptionController)
 router.get('/application/:id', getAApplicationController)
 router.get('/application', getAllApplicationController)
 router.get('/unapproved-course', getUnapprovedCourseController)

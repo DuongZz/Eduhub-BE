@@ -1,8 +1,10 @@
 import Application from "../../models/application";
 
-export const getAllApplicationService = async () => {
+export const getAllApplicationService = async (page: number) => {
   try {
-    const application = await Application.find();
+    const limit = 8;
+    const skip = (page - 1) * limit;
+    const application = await Application.find().skip(skip).limit(limit);
     if (!application) {
       throw new Error('No Application');
     }
