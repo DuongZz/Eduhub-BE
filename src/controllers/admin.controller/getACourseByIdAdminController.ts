@@ -1,5 +1,5 @@
 import { StatusCodes } from 'http-status-codes';
-import { getACourseByIdService } from '../../services/admin/getACourseByIdService';
+import { getACourseByIdService } from '../../services/admin/getACourseByIdAdminService';
 import { Request, Response } from 'express';
 
 

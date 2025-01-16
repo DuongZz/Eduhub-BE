@@ -17,7 +17,7 @@ import { getUserByRoleController } from "../controllers/admin.controller/getUser
 import { getAllCommentAdminController } from "../controllers/admin.controller/getAllCommentController";
 import { deleteCommentAdminController } from "../controllers/admin.controller/deleteCommentAdminController";
 import { getAllCourseAdminController } from "../controllers/admin.controller/getAllCourseAdminController";
-import { getACourseByIdController } from "../controllers/admin.controller/getACourseByIdController";
+import { getACourseByIdController } from "../controllers/admin.controller/getACourseByIdAdminController";
 
 const router = Router();
 
