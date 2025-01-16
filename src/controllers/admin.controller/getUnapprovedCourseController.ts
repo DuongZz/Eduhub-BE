@@ -4,7 +4,9 @@ import { getUnapprovedCourseService } from '../../services/admin/getUnapprovedCo
 
 export const getUnapprovedCourseController = async (req: Request, res: Response) => {
   try {
-    const course = await getUnapprovedCourseService();
+    const { page } = req.query;
+    const pageNum = page ? Number(page) : 1;
+    const course = await getUnapprovedCourseService(pageNum);
     if (!course) {
       res.status(StatusCodes.NOT_FOUND).json({ message: 'No unapproved course' });
     }
