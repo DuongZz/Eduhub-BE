@@ -11,6 +11,7 @@ import { searchInstructorByNameController } from "../controllers/instructor.cont
 import { adminLogin } from "../controllers/admin.controller/loginAdmin";
 import { getUserOrderController } from "../controllers/admin.controller/getUserOrderController";
 import { getAllUserOrderController } from "../controllers/admin.controller/getAllUserOrderController";
+import { cancelOrderController } from "../controllers/admin.controller/cancelOrderController";
 
 const router = Router();
 
@@ -28,7 +29,8 @@ router.get('/user/order', getUserOrderController);
 router.get('/user/all-order', getAllUserOrderController)
 
 router.post('/change-role/:id', changeRoleController);
-router.post('/approve/course/:id', approvedCourseController)
+router.post('/approve/course/:id', approvedCourseController);
+router.post('/order/cancel/:orderId', cancelOrderController)
 
 export default router;
 
