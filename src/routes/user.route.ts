@@ -37,7 +37,6 @@ router.post('/change-password', changePasswordController)
 router.post('/apply', validateInstructorApplication, upload.single('cv'), applyInstructorController);
 router.post('/cart/:id', toggleCourseInCartController);
 router.post('/wishlist/:id', toggleCourseInWishListController);
-router.post('/avatar', avatarUploadMiddleware, upAvatarController);
 router.post('/rate/:slug', rateACourseController);
 router.post('/chat', chatWithGeminiController)
 
@@ -53,6 +52,6 @@ router.get('/chat', getChatWithGeminiController)
 router.post('/quiz/submit', submitQuizController);
 
 
-router.patch('/edit-profile', editProfileController);
+router.patch('/edit-profile', avatarUploadMiddleware, editProfileController);
 
 export default router;
