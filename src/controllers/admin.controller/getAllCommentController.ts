@@ -7,8 +7,8 @@ export const getAllCommentAdminController = async (req: Request, res: Response) 
     const { page } = req.query;
     const pageNum = page ? Number(page) : 1;
 
-    const userOrder = await getAllCommentAdminService(pageNum);
-    res.status(StatusCodes.OK).json(userOrder);
+    const userCmt = await getAllCommentAdminService(pageNum);
+    res.status(StatusCodes.OK).json(userCmt);
   } catch (err) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err);
   }
