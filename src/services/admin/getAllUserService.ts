@@ -5,7 +5,9 @@ export const getAllUserService = async (page: number) => {
     const limit = 8;
     const skip = (page - 1) * limit;
     const user = await User.find().skip(skip).limit(limit);
-    return user;
+    const totalUser = await User.countDocuments({})
+    const totalPages = Math.ceil(totalUser / limit);
+    return { totalUser, totalPages, user };
   } catch (err) {
     throw new Error(err);
   }

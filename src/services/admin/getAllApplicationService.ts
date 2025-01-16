@@ -2,7 +2,7 @@ import Application from "../../models/application";
 
 export const getAllApplicationService = async () => {
   try {
-    const application = await Application.find();
+    const application = await Application.find().populate("user", "fullName");
     if (!application) {
       throw new Error('No Application');
     }

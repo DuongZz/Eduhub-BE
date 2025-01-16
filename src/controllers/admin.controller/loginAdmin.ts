@@ -37,7 +37,7 @@ export const adminLogin = async (req: Request, res: Response) => {
       httpOnly: true,
     });
 
-    return res.status(StatusCodes.OK).json({ message: "Admin login successful" });
+    return res.status(StatusCodes.OK).json({ message: "Admin login successful", adminInfo: user });
   } catch (err) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err);
   }

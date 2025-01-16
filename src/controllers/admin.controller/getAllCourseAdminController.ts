@@ -7,8 +7,8 @@ export const getAllCourseAdminController = async (req: Request, res: Response) =
     const { page } = req.query;
     const pageNum = page ? Number(page) : 1;
 
-    const course = await getAllCourseAdminService(pageNum);
-    res.status(StatusCodes.OK).json(course);
+    const { course, total, totalPages } = await getAllCourseAdminService(pageNum);
+    res.status(StatusCodes.OK).json({ course, total, totalPages });
   } catch (err) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err);
   }
