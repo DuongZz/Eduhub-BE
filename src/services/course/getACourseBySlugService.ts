@@ -3,7 +3,7 @@ import Instructor from '../../models/instructor';
 
 export const getACourseBySlugService = async (slug: string) => {
   try {
-    const course = await Course.findOne({ slug: slug })
+    const course = await Course.findOne({ slug: slug, approvalStatus: 'Approved' })
       .populate("approvedBy")
       .populate("videos", "lessonName");;
 

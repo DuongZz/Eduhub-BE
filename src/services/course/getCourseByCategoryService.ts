@@ -5,10 +5,10 @@ export const getCourseByCategoryService = async (category: string, page: number)
     const limit = 8;
     const skip = (page - 1) * limit;
 
-    const courses = await Course.find({ category }).skip(skip).limit(limit);
+    const courses = await Course.find({ category, approvalStatus: 'Approved' }).skip(skip).limit(limit);
     const total = await Course.countDocuments({ category });
     const totalPages = Math.ceil(total / limit);
-    const suggestedCourses = await Course.find({ _id: { $nin: courses.map(c => c._id) } })
+    const suggestedCourses = await Course.find({ _id: { $nin: courses.map(c => c._id) }, approvalStatus: 'Approved' })
       .sort({ view: -1 })
       .limit(8);
     return { courses, suggestedCourses, total, totalPages };

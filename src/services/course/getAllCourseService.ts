@@ -3,10 +3,22 @@ import Instructor from '../../models/instructor';
 
 export const getAllCourseService = async () => {
   try {
-    const topSoldCourse = await Course.find().sort({ sold: -1 }).limit(8).populate("approvedBy", "fullName");
-    const topViewCourse = await Course.find().sort({ view: -1 }).limit(8).populate("approvedBy", "fullName");
-    const topSaleCourse = await Course.find().sort({ discount: -1 }).limit(8).populate("approvedBy", "fullName");
-    const newReleasedCourse = await Course.find().sort({ createdAt: -1 }).limit(8).populate("approvedBy", "fullName");
+    const topSoldCourse = await Course.find({ approvalStatus: 'Approved' })
+      .sort({ sold: -1 })
+      .limit(8)
+      .populate("approvedBy", "fullName");
+    const topViewCourse = await Course.find({ approvalStatus: 'Approved' })
+      .sort({ view: -1 })
+      .limit(8)
+      .populate("approvedBy", "fullName");
+    const topSaleCourse = await Course.find({ approvalStatus: 'Approved' })
+      .sort({ discount: -1 })
+      .limit(8)
+      .populate("approvedBy", "fullName");
+    const newReleasedCourse = await Course.find({ approvalStatus: 'Approved' })
+      .sort({ createdAt: -1 })
+      .limit(8)
+      .populate("approvedBy", "fullName");
 
     const topInstructorsByStudents = await Instructor.aggregate([
       {

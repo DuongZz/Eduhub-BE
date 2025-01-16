@@ -4,9 +4,9 @@ export const getCourseBySubCategoryService = async (subCategories: string, page:
   try {
     const limit = 8;
     const skip = (page - 1) * limit;
-    const courses = await Course.find({
-      subCategories: { $in: [subCategories] }
-    }).skip(skip).limit(limit);
+    const courses = await Course.find({ subCategories: { $in: [subCategories] }, approvalStatus: 'Approved' })
+      .skip(skip)
+      .limit(limit);
     const total = await Course.countDocuments({
       subCategories: { $in: [subCategories] }
     });
