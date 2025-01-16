@@ -14,6 +14,8 @@ import { getAllUserOrderController } from "../controllers/admin.controller/getAl
 import { cancelOrderController } from "../controllers/admin.controller/cancelOrderController";
 import { getAllUserController } from "../controllers/admin.controller/getAllUserController";
 import { getUserByRoleController } from "../controllers/admin.controller/getUserByRoleController";
+import { getAllCommentAdminController } from "../controllers/admin.controller/getAllCommentController";
+import { deleteCommentAdminController } from "../controllers/admin.controller/deleteCommentAdminController";
 
 const router = Router();
 
@@ -31,10 +33,13 @@ router.get('/user/order', getUserOrderController);
 router.get('/user/all-order', getAllUserOrderController)
 router.get('/user/all-account', getAllUserController)
 router.get('/user/account', getUserByRoleController)
+router.get('/comment/all', getAllCommentAdminController)
 
 router.post('/change-role/:id', changeRoleController);
 router.post('/approve/course/:id', approvedCourseController);
 router.post('/order/cancel/:orderId', cancelOrderController)
+
+router.delete('/comment/delete/:commentId', deleteCommentAdminController)
 
 export default router;
 
