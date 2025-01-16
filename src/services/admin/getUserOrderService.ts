@@ -9,7 +9,7 @@ export const getUserOrderService = async (orderStatus: string, page: number) => 
     const userOrder = await Order.find({ paymentStatus: orderStatus })
       .populate({
         path: 'user',
-        select: 'fullName role',
+        select: 'fullName role phone',
       })
       .skip(skip)
       .limit(limit);
