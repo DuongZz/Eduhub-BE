@@ -1,6 +1,7 @@
+import { ObjectId } from "mongoose";
 import Order from "../../models/order";
 
-export const getMyOrderService = async (userId: string) => {
+export const getMyOrderService = async (userId: ObjectId) => {
   try {
     const order = await Order.find({ user: userId }).sort({ createdAt: -1 });
     if (!order) {

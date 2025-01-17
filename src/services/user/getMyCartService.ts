@@ -1,5 +1,6 @@
+import { ObjectId } from "mongoose";
 import Cart from "../../models/cart";
-export const getMyCartService = async (userId: string) => {
+export const getMyCartService = async (userId: ObjectId) => {
   try {
     const cart = await Cart.findOne({ user: userId })
       .populate({

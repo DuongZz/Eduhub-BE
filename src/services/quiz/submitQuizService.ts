@@ -2,8 +2,9 @@ import QuizAttempt from '../../models/quizAttempt';
 import Quiz from '../../models/quiz';
 import Question from '../../models/question';
 import Answer from '../../models/answer';
+import { ObjectId } from 'mongoose';
 
-export const submitQuizService = async (userId: string, courseId: string, quizId: string, userAnswers: any[]) => {
+export const submitQuizService = async (userId: ObjectId, courseId: string, quizId: string, userAnswers: any[]) => {
   try {
     // Lấy thông tin quiz
     const quiz = await Quiz.findById(quizId).populate('questions');

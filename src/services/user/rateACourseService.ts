@@ -1,8 +1,9 @@
 import Rate from "../../models/rate";
 import Course from "../../models/course";
 import User from "../../models/user";
+import { ObjectId } from "mongoose";
 
-export const rateACourseService = async (slug: string, rating: string, content: string, userId: string) => {
+export const rateACourseService = async (slug: string, rating: string, content: string, userId: ObjectId) => {
   try {
     const course = await Course.findOne({ slug });
     if (!course) {

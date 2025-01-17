@@ -1,6 +1,7 @@
+import { ObjectId } from "mongoose";
 import Chat from "../../models/chat";
 
-export const getChatWithGeminiService = async (id: string) => {
+export const getChatWithGeminiService = async (id: ObjectId) => {
   try {
     const chat = await Chat.find({ userId: id });
     if (!chat) {

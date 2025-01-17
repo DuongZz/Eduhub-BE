@@ -1,5 +1,6 @@
+import { ObjectId } from "mongoose";
 import WishList from "../../models/wishList";
-export const getMyWishListService = async (userId: string) => {
+export const getMyWishListService = async (userId: ObjectId) => {
   try {
     const wishList = await WishList.findOne({ user: userId })
       .populate({
