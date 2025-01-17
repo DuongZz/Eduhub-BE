@@ -16,6 +16,7 @@
     "dependencies": {
         "@google/generative-ai": "^0.21.0",
         "@types/jsonwebtoken": "^8.5.8",
+        "@types/multer": "^1.4.12",
         "aws-sdk": "^2.1167.0",
         "axios": "^1.7.9",
         "bcrypt": "^5.0.1",
