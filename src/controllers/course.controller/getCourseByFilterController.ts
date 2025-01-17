@@ -4,10 +4,11 @@ import { getCourseByFilterService } from '../../services/course/getCourseByFilte
 
 export const getCourseByFilterController = async (req: Request, res: Response) => {
   try {
-    const { option, page } = req.query;
+
+    const { category, option, page } = req.query;
     const pageNum = page ? Number(page) : 1;
 
-    const course = await getCourseByFilterService(option as string, pageNum);
+    const course = await getCourseByFilterService(category as string, option as string, pageNum);
     res.status(StatusCodes.OK).json(course)
   } catch (err) {
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
