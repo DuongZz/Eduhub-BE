@@ -50,7 +50,6 @@ router.get('/:courseId/:quizId', getQuizByIdController);
 router.get('/chat', getChatWithGeminiController)
 router.post('/quiz/submit', submitQuizController);
 
-
 router.patch('/edit-profile', avatarUploadMiddleware, editProfileController);
 
 export default router;
