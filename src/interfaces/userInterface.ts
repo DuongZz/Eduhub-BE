@@ -7,12 +7,13 @@ export interface IUser {
     gender: GENDER;
     dateOfBirth: Date;
     country: string;
-    province: string;
-    province_city: string;
+    city: string;
     phone: string;
     avatar: string;
     email: string;
     password: string;
     role: ROLE;
     coursePurchased?: mongoose.Types.ObjectId[];
+    resetPasswordOTP?: string;
+    resetPasswordOTPExpire?: Date;
 }

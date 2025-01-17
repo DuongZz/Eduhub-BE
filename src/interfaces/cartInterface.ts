@@ -1,6 +1,6 @@
-import { Document, Schema, Types } from 'mongoose';
+import mongoose, { Document } from 'mongoose';
 
 export interface ICart extends Document {
-  user: Schema.Types.ObjectId;
-  items: Schema.Types.ObjectId[];
+  user: mongoose.Types.ObjectId;
+  items: mongoose.Types.ObjectId[];
 }

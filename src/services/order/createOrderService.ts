@@ -1,5 +1,6 @@
 import Order from '../../models/order';
 import Course from '../../models/course';
+import Cart from '../../models/cart';
 
 export const createOrderService = async (userId: string, courseIds: string[]) => {
   try {
@@ -16,6 +17,8 @@ export const createOrderService = async (userId: string, courseIds: string[]) =>
       totalAmount += finalPrice;
       return {
         course: course._id,
+        courseName: course.courseName,
+        slug: course.slug,
         price: course.price,
         discount: course.discount || 0,
       };
@@ -27,6 +30,18 @@ export const createOrderService = async (userId: string, courseIds: string[]) =>
       totalAmount,
       paymentStatus: 'Pending',
     });
+
+    // Xóa các khóa học khỏi giỏ hàng
+    const cart = await Cart.findOne({ user: userId });
+    if (!cart) {
+      throw new Error("Cart not found.");
+    }
+
+    // Loại bỏ các khóa học đã đặt hàng khỏi giỏ hàng
+    cart.items = cart.items.filter(
+      (cartItem) => !courseIds.includes(cartItem.toString())
+    );
+    await cart.save();
 
     await newOrder.save();
     return newOrder;

@@ -8,7 +8,7 @@ export const getACourseByCategoryController = async (req: Request, res: Response
     const { page } = req.query;
     const pageNum = page ? Number(page) : 1;
 
-    const { courses, suggestedCourses } = await getCourseByCategoryService(slug, pageNum);
+    const { courses, suggestedCourses, total, totalPages } = await getCourseByCategoryService(slug, pageNum);
 
     if (!courses || courses.length === 0) {
       return res.status(StatusCodes.NOT_FOUND).json({
@@ -19,6 +19,8 @@ export const getACourseByCategoryController = async (req: Request, res: Response
     return res.status(StatusCodes.OK).json({
       message: 'Courses retrieved successfully',
       data: {
+        totalPages,
+        total,
         courses,
         suggestedCourses,
       },

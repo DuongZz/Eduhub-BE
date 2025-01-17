@@ -5,8 +5,7 @@ import Order from "../../models/order";
 import User from "../../models/user";
 import config from "../../config/config";
 import { PAYMENT_STATUS } from "../../models/type";
-import mongoose from "mongoose";
-
+import Cart from "../../models/cart";
 
 export const initiatePaymentMomo = async (req, res, next) => {
   const id = req.body.id;
@@ -119,7 +118,6 @@ export const handleMomoIPN = async (req, res) => {
     }
 
     if (resultCode === 0) {
-      // Xử lý khi thanh toán thành công
       const order = await Order.findById(orderId).populate("user");
       if (!order) {
         console.error(`Không tìm thấy đơn hàng ${orderId}`);
@@ -137,12 +135,25 @@ export const handleMomoIPN = async (req, res) => {
         return res.status(404).json({ error: "User not found" });
       }
 
-      order.items.forEach((item) => {
+      for (const item of order.items) {
         const courseId = item.course;
+        const cart = await Cart.findOne({ user: user._id });
+
+        if (cart && Array.isArray(cart.items)) {
+          const courseIndex = cart.items.findIndex(
+            (cartItem) => cartItem.toString() === courseId.toString()
+          );
+
+          if (courseIndex !== -1) {
+            cart.items.splice(courseIndex, 1);
+            await cart.save();
+          }
+        }
+
         if (!user.coursePurchased.includes(courseId)) {
           user.coursePurchased.push(courseId);
         }
-      });
+      }
 
       await user.save();
 

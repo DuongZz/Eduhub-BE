@@ -6,7 +6,8 @@ export enum GENDER {
 export enum ROLE {
   LEARNER = 'LEARNER',
   INSTRUCTOR = 'INSTRUCTOR',
-  ADMIN = 'ADMIN'
+  ADMIN = 'ADMIN',
+  ASSISTANT = 'ASSISTANT'
 }
 
 export enum RATING {

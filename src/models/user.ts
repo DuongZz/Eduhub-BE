@@ -56,7 +56,13 @@ const UserSchema: Schema = new Schema(
                 ref: 'Course',
                 default: []
             }
-        ]
+        ],
+        resetPasswordOTP: {
+            type: String,
+        },
+        resetPasswordOTPExpire: {
+            type: Date,
+        },
     },
     { timestamps: true }
 );

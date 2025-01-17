@@ -1,12 +1,12 @@
 import { StatusCodes } from 'http-status-codes';
-import { getACourseService } from '../../services/course/getACourseService';
+import { getACourseByIdService } from '../../services/admin/getACourseByIdAdminService';
 import { Request, Response } from 'express';
 
 
-export const getACourseController = async (req: Request, res: Response) => {
+export const getACourseByIdController = async (req: Request, res: Response) => {
   try {
     const { id: courseId } = req.params;
-    const course = await getACourseService(courseId)
+    const course = await getACourseByIdService(courseId)
     if (!course) {
       return res.status(StatusCodes.NOT_FOUND).json('Course not found');
     }
