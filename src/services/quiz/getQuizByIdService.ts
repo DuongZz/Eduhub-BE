@@ -7,7 +7,7 @@ export const getQuizByIdService = async (courseId: string, quizId: string) => {
         path: "questions",
         populate: {
           path: "answers",
-          select: "text",
+          select: "text isCorrect",
         },
         select: "questionText maxScore",
       })
