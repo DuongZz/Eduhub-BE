@@ -1,7 +1,8 @@
+import { ObjectId } from "mongoose";
 import Course from "../../models/course";
 import WishList from "../../models/wishList";
 
-export const toggleCourseInWishListService = async (userId: string, courseId: string) => {
+export const toggleCourseInWishListService = async (userId: ObjectId, courseId: string) => {
   try {
     const course = await Course.findById(courseId);
 

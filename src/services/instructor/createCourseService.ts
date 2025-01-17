@@ -1,6 +1,7 @@
+import { ObjectId } from 'mongoose';
 import Course from '../../models/course';
 
-export const createCourseService = async (courseData: { courseName: string; createdBy: string, slug: string }) => {
+export const createCourseService = async (courseData: { courseName: string; createdBy: ObjectId, slug: string }) => {
   try {
     const newCourse = new Course({
       courseName: courseData.courseName,

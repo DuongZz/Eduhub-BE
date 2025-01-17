@@ -1,3 +1,4 @@
+import { ObjectId } from "mongoose";
 import Instructor from "../../models/instructor";
 
 export const getAInstructorInfoService = async (id: string) => {

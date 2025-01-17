@@ -1,6 +1,7 @@
+import { ObjectId } from "mongoose";
 import Comment from "../../models/comment";
 
-export const createCommentService = async (courseId: string, userId: string, commentContent: string) => {
+export const createCommentService = async (courseId: string, userId: ObjectId, commentContent: string) => {
   try {
     const newComment = await Comment.create({
       courseId,

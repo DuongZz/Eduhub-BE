@@ -1,7 +1,8 @@
+import { ObjectId } from "mongoose";
 import Cart from "../../models/cart";
 import Course from "../../models/course";
 
-export const toggleCourseInCartService = async (userId: string, courseId: string) => {
+export const toggleCourseInCartService = async (userId: ObjectId, courseId: string) => {
   try {
     const course = await Course.findById(courseId);
 

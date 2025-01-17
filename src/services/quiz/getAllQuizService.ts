@@ -1,7 +1,8 @@
+import { ObjectId } from "mongoose";
 import Quiz from "../../models/quiz";
 import QuizAttempt from "../../models/quizAttempt";
 
-export const getAllQuizzesByCourseService = async (courseId: string, userId: string) => {
+export const getAllQuizzesByCourseService = async (courseId: string, userId: ObjectId) => {
   try {
     const quizzes = await Quiz.find({ courseId }).select("quizName durationTime maxScore");
 

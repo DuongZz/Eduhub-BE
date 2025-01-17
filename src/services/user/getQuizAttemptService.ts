@@ -1,8 +1,9 @@
 import QuizAttempt from "../../models/quizAttempt";
 import Quiz from "../../models/quiz";
 import Answer from "../../models/answer";
+import { ObjectId } from "mongoose";
 
-export const getQuizAttemptService = async (quizId: string, userId: string) => {
+export const getQuizAttemptService = async (quizId: string, userId: ObjectId) => {
   try {
     const quizAttempt = await QuizAttempt.findOne({ quizId, learnerId: userId })
       .sort({ createdAt: -1 })
