@@ -5,7 +5,6 @@ import { StatusCodes } from 'http-status-codes';
 export const updateLessonController = async (req: Request, res: Response): Promise<void> => {
   const { lessonId, courseId } = req.params;
   const updatedData = req.body;
-
   try {
     const updatedLesson = await updateLessonService(courseId, lessonId, updatedData);
 

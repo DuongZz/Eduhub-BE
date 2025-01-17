@@ -6,15 +6,16 @@ export const searchInstructorByNameService = async (nameInstructor: string, page
     const skip = (page - 1) * limit;
     const normalizedKeyword = nameInstructor.trim().replace(/\s+/g, ' ');
     const instructors = await Instructor.find({
-      fullName: { $regex: normalizedKeyword, $options: 'i' },
+      'user.fullName': { $regex: normalizedKeyword, $options: 'i' }, // Truy vấn tên trong user
     })
       .skip(skip)
       .limit(limit)
       .populate({
         path: 'user',
-        select: 'fullName',
+        select: 'fullName avatar description', // Chọn các trường cần thiết từ user
       });
     return instructors;
+
   } catch (err) {
     throw new Error(err)
   }

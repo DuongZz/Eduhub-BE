@@ -19,7 +19,6 @@ import { getQuizByIdController } from "../controllers/quiz.controller/getQuizByI
 import { submitQuizController } from "../controllers/quiz.controller/submitQuizController";
 import { changePasswordController } from "../controllers/user.controller/changePassword";
 import { getQuizAttemptController } from "../controllers/user.controller/getQuizAttemptController";
-import { upAvatarController } from "../controllers/user.controller/upAvatarController";
 import { avatarUploadMiddleware } from "../middlewares/uploadAvatar";
 import { rateACourseController } from "../controllers/user.controller/rateACourseController";
 import { getRateController } from "../controllers/user.controller/getRateController";
