@@ -6,8 +6,8 @@ export const getAllApplicationController = async (req: Request, res: Response) =
   try {
     const { page } = req.query;
     const pageNum = page ? Number(page) : 1;
-    const application = await getAllApplicationService(pageNum);
-    res.status(StatusCodes.OK).json(application);
+    const { totalApp, totalPages, application } = await getAllApplicationService(pageNum);
+    res.status(StatusCodes.OK).json({ totalApp, totalPages, application });
   } catch (err) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err);
   }
