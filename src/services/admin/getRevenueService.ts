@@ -16,7 +16,8 @@ export const getRevenueService = async (year: number) => {
         $group: {
           _id: { $month: '$createdAt' },
           totalRevenue: { $sum: '$totalAmount' },
-          totalOrders: { $sum: 1 }
+          totalOrders: { $sum: 1 },
+          totalCourses: { $sum: { $size: '$items' } }
         }
       },
       {
@@ -25,18 +26,18 @@ export const getRevenueService = async (year: number) => {
     ]);
 
     const revenueByMonth = {
-      January: 0,
-      February: 0,
-      March: 0,
-      April: 0,
-      May: 0,
-      June: 0,
-      July: 0,
-      August: 0,
-      September: 0,
-      October: 0,
-      November: 0,
-      December: 0
+      January: { revenue: 0, orders: 0, courses: 0 },
+      February: { revenue: 0, orders: 0, courses: 0 },
+      March: { revenue: 0, orders: 0, courses: 0 },
+      April: { revenue: 0, orders: 0, courses: 0 },
+      May: { revenue: 0, orders: 0, courses: 0 },
+      June: { revenue: 0, orders: 0, courses: 0 },
+      July: { revenue: 0, orders: 0, courses: 0 },
+      August: { revenue: 0, orders: 0, courses: 0 },
+      September: { revenue: 0, orders: 0, courses: 0 },
+      October: { revenue: 0, orders: 0, courses: 0 },
+      November: { revenue: 0, orders: 0, courses: 0 },
+      December: { revenue: 0, orders: 0, courses: 0 }
     };
 
     paidOrders.forEach((item) => {
@@ -46,10 +47,16 @@ export const getRevenueService = async (year: number) => {
         'July', 'August', 'September', 'October', 'November', 'December'
       ];
       const monthName = monthNames[monthIndex - 1];
-      revenueByMonth[monthName] = item.totalRevenue;
+      revenueByMonth[monthName] = {
+        revenue: item.totalRevenue,
+        orders: item.totalOrders,
+        courses: item.totalCourses
+      }
     });
+    const totalYearlyRevenue = paidOrders.reduce((sum, item) => sum + item.totalRevenue, 0);
 
-    return revenueByMonth;
+
+    return { revenueByMonth, totalYearlyRevenue };
   } catch (error) {
     throw new Error(`Error fetching paid orders: ${error.message}`);
   }
