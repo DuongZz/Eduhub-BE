@@ -6,7 +6,7 @@
     "scripts": {
     "watch": "tsc -w",
     "dev": "ts-node-dev -r tsconfig-paths/register ./src/index.ts",
-    "start": "node --max-old-space-size=2048 ./dist/index.js",  // Tăng bộ nhớ lên 2GB
+    "start": "node --max-old-space-size=2048 ./dist/index.js", 
     "build": "tsc",
     "build:lib": "tsc"
     },
