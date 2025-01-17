@@ -28,7 +28,7 @@ export const editQuizService = async (quizId: string, data: any) => {
     // Cập nhật câu hỏi
     const questionIds = [];
     for (const questionData of questions) {
-      const { questionId, text, maxScore: questionMaxScore, answers } = questionData;
+      const { questionId, questionText, maxScore: questionMaxScore, answers } = questionData;
 
       // Nếu câu hỏi đã tồn tại, chúng ta tìm và cập nhật nó
       let question;
@@ -38,12 +38,12 @@ export const editQuizService = async (quizId: string, data: any) => {
           throw new Error(`Question with ID ${questionId} not found`);
         }
 
-        question.text = text;
+        question.questionText = questionText;
         question.maxScore = questionMaxScore;
       } else {
         // Nếu câu hỏi mới, tạo câu hỏi mới
         question = new Question({
-          text,
+          questionText,
           maxScore: questionMaxScore,
         });
       }
