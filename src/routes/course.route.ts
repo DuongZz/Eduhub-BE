@@ -10,8 +10,11 @@ import { getACourseByCategoryController } from "../controllers/course.controller
 import { getCoursesBySubCategoryController } from "../controllers/course.controller/getACourseBySubCateController";
 import { searchCourseByNameController } from "../controllers/course.controller/searchCourseByNameController";
 import { searchCourseController } from "../controllers/course.controller/searchCourseController";
+import { getCourseByFilterController } from "../controllers/course.controller/getCourseByFilterController";
 
 const router = Router();
+
+router.get('/filter', getCourseByFilterController)
 router.get('/searching', searchCourseController)
 router.get('/search', searchCourseByNameController)
 router.get('/by-option', getCourseByOptionsController)
