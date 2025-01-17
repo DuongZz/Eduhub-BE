@@ -2,8 +2,9 @@ import { IUser } from './../../interfaces/userInterface';
 import User from "../../models/user";
 import { s3 } from '../../config/s3bucket';
 import config from '../../config/config';
+import { ObjectId } from 'mongoose';
 
-export const editProfileService = async (userId: string, userProfile: IUser, avatarFile?: Express.Multer.File) => {
+export const editProfileService = async (userId: ObjectId, userProfile: IUser, avatarFile?: Express.Multer.File) => {
   try {
     const { fullName, gender, dateOfBirth, country, city, phone, email } = userProfile;
 

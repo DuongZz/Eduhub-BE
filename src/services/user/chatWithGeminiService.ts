@@ -1,7 +1,8 @@
 import Chat from "../../models/chat";
 import genAI from "../../config/geminiConfig";
+import { ObjectId } from "mongoose";
 
-export const chatWithGeminiService = async (userId: string, message: string, role: string) => {
+export const chatWithGeminiService = async (userId: ObjectId, message: string, role: string) => {
   const userMessage = await Chat.create({
     userId,
     role: role,

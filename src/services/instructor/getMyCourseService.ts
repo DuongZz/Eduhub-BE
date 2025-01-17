@@ -1,6 +1,7 @@
+import { ObjectId } from "mongoose";
 import Course from "../../models/course";
 
-export const getMyCourseService = async (instructorId: string) => {
+export const getMyCourseService = async (instructorId: ObjectId) => {
   try {
     const course = await Course.find({ approvedBy: instructorId });
     if (!course) {

@@ -1,7 +1,8 @@
+import { ObjectId } from "mongoose";
 import Comment from "../../models/comment";
 import Reply from "../../models/reply";
 
-export const replyCommentService = async (commentId: string, userId: string, replyContent: string) => {
+export const replyCommentService = async (commentId: string, userId: ObjectId, replyContent: string) => {
   try {
     const reply = await Reply.create({
       commentId,

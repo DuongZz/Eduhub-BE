@@ -1,6 +1,7 @@
+import { ObjectId } from "mongoose";
 import User from "../../models/user";
 
-export const getCoursePurchasedService = async (userId: string) => {
+export const getCoursePurchasedService = async (userId: ObjectId) => {
   try {
     const coursePurchased = await User.findById(userId)
       .populate({

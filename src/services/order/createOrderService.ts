@@ -1,8 +1,9 @@
 import Order from '../../models/order';
 import Course from '../../models/course';
 import Cart from '../../models/cart';
+import { ObjectId } from 'mongoose';
 
-export const createOrderService = async (userId: string, courseIds: string[]) => {
+export const createOrderService = async (userId: ObjectId, courseIds: string[]) => {
   try {
     const courses = await Course.find({ _id: { $in: courseIds } });
 
