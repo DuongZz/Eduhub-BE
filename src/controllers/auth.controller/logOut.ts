@@ -14,20 +14,17 @@ export const logOut = async (req: Request, res: Response) => {
       });
     }
 
-    // Xóa cookie
-    res.clearCookie("refreshToken", {
+    const isProd = process.env.NODE_ENV === 'production';
+    const cookieOptions = {
       path: "/",
-      sameSite: false,
-      secure: true,
+      secure: isProd,
       httpOnly: true,
-    });
+      sameSite: (isProd ? 'none' : 'lax') as 'none' | 'lax',
+    };
 
-    res.clearCookie("accessToken", {
-      path: "/",
-      sameSite: true,
-      secure: true,
-      httpOnly: true,
-    });
+    // Xóa cookie
+    res.clearCookie("refreshToken", cookieOptions);
+    res.clearCookie("accessToken", cookieOptions);
 
     res.status(StatusCodes.OK).json({ message: "Logout successful" });
   } catch (err) {
