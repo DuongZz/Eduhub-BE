@@ -11,6 +11,7 @@ import { getCourseLessonController } from "../controllers/instructor.controller/
 import { getCourseQuizController } from "../controllers/instructor.controller/getCourseQuizController";
 import { deleteQuizController } from "../controllers/instructor.controller/deleteQuizController";
 import { deleteCourseController } from "../controllers/instructor.controller/deleteCourseController";
+import { editQuizController } from "../controllers/instructor.controller/editQuizController";
 
 const router = Router();
 router.use(checkJwt);
@@ -28,5 +29,6 @@ router.delete('/quiz/:quizId', deleteQuizController);
 router.delete('/course/:courseId', deleteCourseController);
 
 router.patch('/course/update/:id', posterUploadMiddleware, updateCourseController);
+router.patch('/edit-quiz/:quizId', editQuizController)
 
 export default router

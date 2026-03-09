@@ -19,6 +19,7 @@ import { deleteCommentAdminController } from "../controllers/admin.controller/de
 import { getAllCourseAdminController } from "../controllers/admin.controller/getAllCourseAdminController";
 import { getACourseByIdController } from "../controllers/admin.controller/getACourseByIdAdminController";
 import { getApplicationByOptionController } from "../controllers/admin.controller/getApplicationByOptionController";
+import { getRevenueController } from "../controllers/admin.controller/getRevenueController";
 
 const router = Router();
 
@@ -39,6 +40,7 @@ router.get('/user/account', getUserByRoleController)
 router.get('/comment/all', getAllCommentAdminController)
 router.get('/course/all', getAllCourseAdminController)
 router.get('/course/info/:id', getACourseByIdController)
+router.get('/revenue', getRevenueController)
 
 router.post('/change-role/:id', changeRoleController);
 router.post('/approve/course/:id', approvedCourseController);
